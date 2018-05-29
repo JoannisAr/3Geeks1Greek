@@ -1,10 +1,10 @@
 <?php
-
+// ima jos za pretragu da se doda.. i u modelu za jelo isto.
 class Gost extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
-        $this->load->model("");//ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
+     /*   $this->load->model("");//ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         $this->load->model("");// kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
         
@@ -15,7 +15,8 @@ class Gost extends CI_Controller{
             } else {
                 redirect("Korisnik");
             }
-        }
+        }*/
+         //$this->load->view(
     }
         
     //--pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
@@ -30,7 +31,8 @@ class Gost extends CI_Controller{
     public function index(){
        // dohvati ta 3 iz baze.
        // $this->prikazi("home stranicu ", array('vesti'=>$vesti,'controller'=>"Gost") oblika
-       //                                                            ovog samo u podatke imamo 3 recepta);
+       //                                    ovog samo u podatke imamo 3 recepta);
+         $this->load->view("home.php");
     }
     
     //-- metoda koja se poziva prilikom pretrage  po nazivu itd itd.
@@ -69,6 +71,26 @@ class Gost extends CI_Controller{
         // preusmeri na prikaz forme unosa dodatnik podataka . znaci metode register  chefa -ili korisnika.
         //ako ne valja prikaze register gosta.. sa porukom...
     }
+    private function registerKorisnik()
+    {
+        //prikazi stranicu za registraciju Korisnika
+        //private zato sto je poziva registruj.
+        
+    }
+    public function registrujSeKorisnik(){
+        // sve popunio i kliknuo e sad dal treba evidentirati u bazi ili ne.
+        // i preusmeritiga na login.
+    }
+      private function registerKuvar()
+    {
+        //prikazi stranicu za registraciju Kuvara
+        //private zato sto je poziva registruj.
+        
+    }
+    public function registrujSeKuvar(){
+        // sve popunio i kliknuo e sad dal treba evidentirati u bazi ili ne.
+        // i preusmeritiga na login.
+    }
     
     // -- medota koja ako nije ulogovan trazi loguj se. ako jeste da jelo..
     // ako vec ulogovan preusmerava na korisnik kontroler predlozi jelo..
@@ -83,13 +105,18 @@ class Gost extends CI_Controller{
     }
     
     // -- za review requirements nema metode u gostu to ce se izbaciti iz headera gosta.
-    public function prikazNekeKategorije(){
+    public function prikaziKategoriju(){
         // uzme podatak preko geta sto se setovo kad je klikno dal 
         // je to beef ili chicken ili lunch ili whatever
         // vrsi pretragu  i ispisuje.. 
         // pozivajuci metodu prikazi sa array podatakama.
     }
-    
+     public function prikaziPrilika(){
+        // uzme podatak preko geta sto se setovo kad je klikno dal 
+        // je to dorucak ili rucak ili sta god.
+        // vrsi pretragu  i ispisuje.. 
+        // pozivajuci metodu prikazi sa array podatakama.
+    }
     // -- metoda za postavljanje recepta.
     public function postavitiRecept(){
         // ako nije logovan prikaz za logovanje 

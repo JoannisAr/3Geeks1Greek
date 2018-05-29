@@ -80,7 +80,7 @@ $autoload['libraries'] = array('form_validation','database','session');
 |
 */
 $autoload['drivers'] = array();
-
+$autoload['helper'] = array('url');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Helper Files
