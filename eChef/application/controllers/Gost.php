@@ -4,6 +4,7 @@ class Gost extends CI_Controller{
 	
     public function __construct() {
         parent::__construct();
+        $this->load->model("Jelo");
      /*   $this->load->model("");//ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         $this->load->model("");// kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
@@ -21,9 +22,10 @@ class Gost extends CI_Controller{
         
     //--pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
     private function prikazi($glavniDeo, $data){
-        $this->load->view("sablon/GOSTHEADER.php", $data);
+        $data['controller'] = "Gost";
+        $this->load->view("sablon/gost_header.php", $data);
         $this->load->view($glavniDeo, $data);
-        $this->load->view("sablon/FOOTERA.php");
+        $this->load->view("sablon/footer.php");
     }
     
     //-- prikazuje index i u onaj slide bar u sredini  dohvata i stavlja 3
@@ -35,15 +37,24 @@ class Gost extends CI_Controller{
        // $this->prikazi("home stranicu ", array('vesti'=>$vesti,'controller'=>"Gost") oblika
        //                   
        //                                                     ovog samo u podatke imamo 3 recepta);
-        $podaci=NULL;
-       $this->prikazi("HOMESOS.php",$podaci);
+       $podaci=NULL;
+       $this->prikazi("home.php",$podaci);
+       //$image = new Imagick();
     }
     
     //-- metoda koja se poziva prilikom pretrage  po nazivu itd itd.
 	// IVANA
+    public function prikazipretraga(){
+        $data=[];
+        $this->prikazi("search.php",$data);
+    }
+    
     public function pretraga(){
         //uzme podatak 
-        $trazi=$this->input->get('pretraga');
+        $search = $this->input->get('searchBox');
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
+        $this->load->view("rezultatipretrage.php",$data);
         // uradi pretragu 
         //poziva metodu prikazi za jela sto je dobio.
          // $this->prikazi("jelo stranica",array rezultata);
@@ -107,21 +118,22 @@ class Gost extends CI_Controller{
     // -- za review requirements nema metode u gostu to ce se izbaciti iz headera gosta.
 	// IVANA
     
-    public function prikaziPrilika(){
+    public function prikaziPrilika($prilika){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
+        $this->load->view("rezultatipretrage.php",$data);
     }
     
-    public function prikaziPoSastojku(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to beef ili chicken ili lunch ili whatever
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
+    public function prikaziPoSastojku($sastojak){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloSastojak($sastojak);
+        $this->load->view("rezultatipretrage.php",$data);
     }
     
-     public function prikaziKategoriju(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to dorucak ili rucak ili sta god.
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
+     public function prikaziKategoriju($kategorija){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
+        $this->load->view("rezultatipretrage.php",$data);
     }
     // -- metoda za postavljanje recepta.
 	// CHEVU

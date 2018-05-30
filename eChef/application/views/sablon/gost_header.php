@@ -41,40 +41,40 @@
                                                 <span>Recipe Category</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="features-typo-basic.html">Lamb</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Lamb"); ?>">Lamb</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-typo-blockquotes.html">Turkey</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Turkey"); ?>">Turkey</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Chicken</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Chicken"); ?>">Chicken</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Beef</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Beef"); ?>">Beef</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Pork</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Pork"); ?>">Pork</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Fish</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Fish"); ?>">Fish</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Fruit</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Fruit"); ?>">Fruit</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Vegetables</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Vegetables"); ?>">Vegetables</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Seafood</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Seafood"); ?>">Seafood</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Pasta</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Pasta"); ?>">Pasta</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Rice, Risotto and Orzo</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Rice"); ?>">Rice, Risotto and Orzo</a>
                                                     </li>
 													<li>
-                                                        <a href="features-typo-blockquotes.html">Chocolate</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPoSastojku/Chocolate"); ?>">Chocolate</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -82,16 +82,16 @@
                                                 <span>Special Meals</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="features-labels.html">Breakfast</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziKategoriju/Breakfast"); ?>">Breakfast</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-progress-bars.html">Lunch</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziKategoriju/Lunch"); ?>">Lunch</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-panels.html">Dessert</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziKategoriju/Dessert"); ?>">Dessert</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-pagination.html">Dinner</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziKategoriju/Dinner"); ?>">Dinner</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -137,8 +137,10 @@
                                     <li>
                                         <a href="contact.html" class="fa-comment ">Contact</a>
                                     </li>
-									<li>
-                                        <a href="searchpage.html" ><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
+				    <li>
+                                        
+                                        <a href="<?php echo site_url("Gost/prikazipretraga"); ?>"><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
+                                    
                                     </li>
                                 </ul>
                             </div>

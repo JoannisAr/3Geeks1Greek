@@ -11,12 +11,37 @@
  *
  * @author Korisnik
  */
-class Jelo {
+class Jelo extends CI_Model{
     //dohvati jelo sa tim imenom
-    public static function dohvatiJeloIme($ime){
-        
+    
+     public function __construct() {
+        parent::__construct();
     }
-    public static function dohvatiJeloKategorija($kategorija){
+    
+    public  function dohvatiJeloIme($ime){
+        $this->db->like("naziv", $ime);
+       
+        $this->db->from("recepti");
+        $this->db->select("naziv,obrok,kategorija,spec_prilika");
+        
+        $query=$this->db->get();
+
+        return $query->result();
+    }
+    
+    public  function dohvatiJeloKategorija($kategorija){
+       $this->db->select("naziv,obrok,kategorija,spec_prilika");
+       $this->db->where('kategorija',$kategorija);            
+       $query = $this->db->get('recepti');
+       return $query->result();
+    }
+    public function dohvatiJeloPrilika($prilika){
+       $this->db->select("naziv,obrok,kategorija,spec_prilika");
+       $this->db->where('spec_prilika',$prilika);            
+       $query = $this->db->get('recepti');
+       return $query->result();
+    }
+    public function dohvatiJeloSastoja($sastojak){
         
     }
 }

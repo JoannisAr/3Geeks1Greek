@@ -201,8 +201,7 @@ Cut into slices with a serrated knife and serve.</p>
                                     </ul>
                                 </div>
                             </div>
-                            <!-- End recent Posts -->
-									
+                            <!-- End recent Posts -->									
                                 </div>
                             </div>
                         </div>
