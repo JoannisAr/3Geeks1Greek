@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 30, 2018 at 05:52 PM
+-- Generation Time: May 31, 2018 at 03:47 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -60,10 +60,19 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `idKorisnika` int(11) DEFAULT NULL,
   `sadrzaj` text,
   `idR` int(11) DEFAULT NULL,
+  `vreme` date NOT NULL,
   PRIMARY KEY (`idK`),
   KEY `R_14` (`idKorisnika`),
   KEY `R_13` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `komentar`
+--
+
+INSERT INTO `komentar` (`idK`, `idKorisnika`, `sadrzaj`, `idR`, `vreme`) VALUES
+(1, 1, 'cool', 1, '2018-05-12'),
+(2, 2, 'bolje', 1, '2018-05-02');
 
 -- --------------------------------------------------------
 
@@ -82,6 +91,16 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `oznaka` char(1) NOT NULL,
   PRIMARY KEY (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `korisnik`
+--
+
+INSERT INTO `korisnik` (`idK`, `username`, `password`, `ime`, `prezime`, `mail`, `oznaka`) VALUES
+(1, 'janis', 'asdas', 'asfasf', 'asfas', 'asdas', 'R'),
+(2, 'vuk', 'asdas', 'asdasx', 'saxs', 'xgax', 'R'),
+(3, 'jelena', 'asdasf', 'fssaf', 'afs', 'dasa', 'R'),
+(4, 'Ivana', 'asda', 'saf', 'xx', 'asx', 'R');
 
 -- --------------------------------------------------------
 
@@ -126,6 +145,16 @@ CREATE TABLE IF NOT EXISTS `ocenjuje` (
   PRIMARY KEY (`idK`,`idR`),
   KEY `R_20` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ocenjuje`
+--
+
+INSERT INTO `ocenjuje` (`idK`, `idR`, `ocena`, `datum`) VALUES
+(1, 1, 3, '2018-05-15'),
+(2, 1, 1, '2018-05-14'),
+(3, 1, 2, '2018-05-20'),
+(4, 1, 4, '2018-05-17');
 
 -- --------------------------------------------------------
 
@@ -244,6 +273,7 @@ DROP TABLE IF EXISTS `veza_sastojci_recepti`;
 CREATE TABLE IF NOT EXISTS `veza_sastojci_recepti` (
   `idR` int(11) NOT NULL,
   `idS` int(11) NOT NULL,
+  `kolicina` int(11) NOT NULL,
   PRIMARY KEY (`idR`,`idS`),
   KEY `R_27` (`idS`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -252,9 +282,9 @@ CREATE TABLE IF NOT EXISTS `veza_sastojci_recepti` (
 -- Dumping data for table `veza_sastojci_recepti`
 --
 
-INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`) VALUES
-(1, 1),
-(1, 2);
+INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`, `kolicina`) VALUES
+(1, 1, 3),
+(1, 2, 3);
 
 -- --------------------------------------------------------
 

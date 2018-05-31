@@ -54,7 +54,7 @@ class Gost extends CI_Controller{
         $search = $this->input->get('searchBox');
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
-        $this->load->view("rezultatipretrage.php",$data);
+        $this->prikazi("rezultatipretrage.php",$data);
         // uradi pretragu 
         //poziva metodu prikazi za jela sto je dobio.
          // $this->prikazi("jelo stranica",array rezultata);
@@ -111,33 +111,30 @@ class Gost extends CI_Controller{
         // i preusmeritiga na login.
     }
     
-    // -- medota koja ako nije ulogovan trazi loguj se. ako jeste da jelo..
-    // ako vec ulogovan preusmerava na korisnik kontroler predlozi jelo..
-	//CHEVU   
- 
-    // -- za review requirements nema metode u gostu to ce se izbaciti iz headera gosta.
-	// IVANA
-    
+    public function prikaziJelo($id){
+     $data=[];
+     $data['jelo']=$this->Jelo->dohvatiJeloId($id);
+     $data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
+     $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
+     $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
+       //$data = $this->Jelo->dohvatiPodatkeJelo($id);
+       $this->prikazi("recipe_demo.php",$data);
+    }
     public function prikaziPrilika($prilika){
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
-        $this->load->view("rezultatipretrage.php",$data);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
     
     public function prikaziPoSastojku($sastojak){
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloSastojak($sastojak);
-        $this->load->view("rezultatipretrage.php",$data);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
     
      public function prikaziKategoriju($kategorija){
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
-        $this->load->view("rezultatipretrage.php",$data);
-    }
-    // -- metoda za postavljanje recepta.
-	// CHEVU
-    
-    
-    
+        $this->prikazi("rezultatipretrage.php",$data);
+    }   
 }

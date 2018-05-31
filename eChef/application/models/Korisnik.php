@@ -30,4 +30,5 @@ class Korisnik {
     public function __get($imeAtributa) {
         return $this->$imeAtributa;
     }
+    
 }

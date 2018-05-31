@@ -12,7 +12,7 @@
  */
 class Registrovani extends CI_Controller {
     public function __construct() {
-       /*session_start();
+       /*(session_start();
         if(!isset($_SESSION['korisnik'])
         * header("Location:?controller=Gost&akcija=index");
         * else if(isset($_SESSION[kuvar]== 1)
@@ -88,9 +88,7 @@ class Registrovani extends CI_Controller {
     }
     
     public function dodajUKnjigu(){
-        //proveri dal logovan itd.
-        //proveri dal ima vec u knjigu
-        // dodaj mu i nista nek ostane na tu stranicu
+        
     }
     public function ukloniIzKnjige(){
         // proveri dal logovan itd.
