@@ -20,6 +20,18 @@ class Registrovani extends CI_Controller {
          else if(isset($_SESSION[admin]== 1)
         *   header("Location:?controller=Admin&akcija=index");
          */
+		 
+		   parent::__construct();
+          if (($this->session->userdata('korisnik')) == NULL) {
+            redirect("Gost");
+          }
+          if ($this->session->userdata('korisnik')->oznaka == 'a') {
+            redirect("Admin");
+          }
+          if ($this->session->userdata('korisnik')->oznaka == 'k'){
+                 redirect("Kuvar");
+          }
+		 
     }
     // samo poziva prikazi sa drugim podacima..
     //isto kao i kod gosta samo se loaduje novi novi header.  

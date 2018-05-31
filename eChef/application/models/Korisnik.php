@@ -20,15 +20,8 @@ class Korisnik {
 
     */ // nekaki ovakvi podaci..
     public static function dohvatiKorisnika($korisnicko_ime){
-        
+        $result=$this->db->where('username',$korisnicko_ime)->get('korisnik');
+        $korisnik=$result->row();
+       return $korisnik;
     }
-    
-    public function ispravanPassword($lozinka){
-        
-    }
-          
-    public function __get($imeAtributa) {
-        return $this->$imeAtributa;
-    }
-    
 }

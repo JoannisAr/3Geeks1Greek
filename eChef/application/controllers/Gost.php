@@ -5,6 +5,7 @@ class Gost extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model("Jelo");
+		 $this->load->model("Korisnik");
      /*   $this->load->model("");//ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         $this->load->model("");// kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
@@ -64,36 +65,88 @@ class Gost extends CI_Controller{
 	//JANIS
     public function login($poruka=NULL)
     {
-        /*
         $podaci=[];
         if ($poruka) {
             $podaci['poruka'] = $poruka;
         }
-        $this->prikazi('login.php',$podaci);*/
-        
-        
-        
-        $this->load->view("pages-login.html");
+        $this->prikazi("pages-login.php",$podaci);
         
     }
     
     //--metoda koja se poziva klikom na submit forme za logovanje
 	// JANIS
-    public function ulogujSe(){
-       //uradi sve cita iz baze itd itd
-       // ako ne uspe poziva metodu login plus setovalo je poruke. koje metoda login radi
+   public function ulogujSe(){
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+	$this->form_validation->set_rules("username", "Username", "required");
+        $this->form_validation->set_rules("password", "Password", "required");
+        $this->form_validation->set_message("required","Unesite polje {field}.");
+        if ($this->form_validation->run()) {
+            $korisnik=$this->Korisnik->dohvatiKorisnika($this->input->post('username'));
+            if (!$korisnik) {
+                $this->login("Neispravno korisnicko ime!");
+            } 
+			else if (!($this->input->post('password')==$korisnik->password)) {		//this->input->posl()-helper metoda, automatsi vraca null ako ne posotji
+                $this->login("Neispravan password!");
+            } 
+				else {
+					
+					$this->session->set_userdata('korisnik',$korisnik);	//set_userdata setuje niz u session
+					
+					if($korisnik->oznaka == 'r'){
+						redirect("Registrovani");
+					}
+					else 
+						if($korisnik->oznaka == 'k'){
+							redirect("Kuvar");
+						}
+						else redirect("Admin");
+					
+				}
+        } 
+		else {
+            $this->login();
+        }
     }
     
     ///--metoda koja ucitava formu za registraciu onu osnovnu /opstu. specialne su u kontroleru za korisnika i kontrolera za chefa.
 	//JELENA
     public function register($poruka = NULL){
-    
+     $podaci=[];
+        if ($poruka) {
+            $podaci['poruka'] = $poruka;
+        }
+        $this->prikazi("pages-sign-up.php",$podaci);
         
     }
+	
+	 private function proveriReg(){
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        
+	$this->form_validation->set_rules("username", "Username", "required");
+        $this->form_validation->set_rules("password", "Password", "required");
+        $this->form_validation->set_rules("ime", "Ime", "required");
+        $this->form_validation->set_rules("prezime", "Prezime", "required");
+        $this->form_validation->set_rules("email", "E-mail", "required");
+        $this->form_validation->set_rules("password2", "Password", "required");
+        $this->form_validation->set_rules("password2", "Password", "matches['password']");
+        
+        $this->form_validation->set_message("required","Unesite polje {field}.");
+        if ($this->form_validation->run()) {
+            $korisnik=$this->Korisnik->dohvatiKorisnika($this->input->post('username'));
+            if($korisnik){
+                $this->register("Korisnicno ime vec postoji. ");
+            }
+        }
+     
+    }
+	
      private function registerKorisnik()
     {
-        //prikazi stranicu za registraciju Korisnika
-        //private zato sto je poziva registruj.
+             proveriReg();
+        $podaci=[];
+        $this->prikazi("pages-client-sign-up.php",$podaci);
         
     }
     public function registrujSeKorisnik(){
@@ -102,8 +155,9 @@ class Gost extends CI_Controller{
     }
       private function registerKuvar()
     {
-        //prikazi stranicu za registraciju Kuvara
-        //private zato sto je poziva registruj.
+         proveriReg();
+        $podaci=[];
+        $this->prikazi("pages-chef-sign-up.php",$podaci);
         
     }
     public function registrujSeKuvar(){

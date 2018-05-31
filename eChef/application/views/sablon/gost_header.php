@@ -129,7 +129,7 @@
                                                 <a href=<?php echo site_url("Gost/login"); ?>>Login</a>
                                             </li>
                                             <li>
-                                                <a href=<?php echo site_url("Gost/signup"); ?>>Sign-Up</a>
+                                                <a href=<?php echo site_url("Gost/register"); ?>>Sign-Up</a>
                                             </li>
                                             
                                         </ul>
