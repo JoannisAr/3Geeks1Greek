@@ -5,7 +5,7 @@ class Gost extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model("Jelo");
-		 $this->load->model("Korisnik");
+        $this->load->model("Korisnik");
      /*   $this->load->model("");//ucitavaju se php fajlovi gde se nalase ovi modeli i pravi se instanca modela
         $this->load->model("");// kako su nam oba modela trebala u svim kontrolerima 
         //mogli smo i u autoload falju da ih dodamo u niz za modele
@@ -23,7 +23,7 @@ class Gost extends CI_Controller{
         
     //--pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
     private function prikazi($glavniDeo, $data){
-        $data['controller'] = "Gost";
+        $data['controller']='Gost';
         $this->load->view("sablon/gost_header.php", $data);
         $this->load->view($glavniDeo, $data);
         $this->load->view("sablon/footer.php");
@@ -37,8 +37,9 @@ class Gost extends CI_Controller{
        // dohvati ta 3 iz baze.
        // $this->prikazi("home stranicu ", array('vesti'=>$vesti,'controller'=>"Gost") oblika
        //                   
-       //                                                     ovog samo u podatke imamo 3 recepta);
-       $podaci=NULL;
+       //                   
+       //                                                                                       ovog samo u podatke imamo 3 recepta);
+       $podaci=[];
        $this->prikazi("home.php",$podaci);
        //$image = new Imagick();
     }
@@ -82,7 +83,9 @@ class Gost extends CI_Controller{
         $this->form_validation->set_rules("password", "Password", "required");
         $this->form_validation->set_message("required","Unesite polje {field}.");
         if ($this->form_validation->run()) {
-            $korisnik=$this->Korisnik->dohvatiKorisnika($this->input->post('username'));
+            $data=[];
+            $data=$this->Korisnik->dohvatiKorisnika($this->input->post('username'));
+            $korisnik=$data[0];
             if (!$korisnik) {
                 $this->login("Neispravno korisnicko ime!");
             } 
@@ -93,14 +96,15 @@ class Gost extends CI_Controller{
 					
 					$this->session->set_userdata('korisnik',$korisnik);	//set_userdata setuje niz u session
 					
-					if($korisnik->oznaka == 'r'){
+					if($korisnik->oznaka == 'R'){
 						redirect("Registrovani");
 					}
-					else 
-						if($korisnik->oznaka == 'k'){
-							redirect("Kuvar");
-						}
-						else redirect("Admin");
+					else if($korisnik->oznaka == 'K')
+                                        {
+                                            redirect("Kuvar");
+					}
+					else if($korisnik->oznaka == 'A')
+                                            redirect("Admin");
 					
 				}
         } 

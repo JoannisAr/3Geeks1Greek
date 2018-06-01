@@ -12,6 +12,8 @@
  */
 class Registrovani extends CI_Controller {
     public function __construct() {
+       
+        
        /*(session_start();
         if(!isset($_SESSION['korisnik'])
         * header("Location:?controller=Gost&akcija=index");
@@ -22,6 +24,10 @@ class Registrovani extends CI_Controller {
          */
 		 
 		   parent::__construct();
+                   
+                   
+                   
+                   $this->load->model('Jelo');
           if (($this->session->userdata('korisnik')) == NULL) {
             redirect("Gost");
           }
@@ -36,15 +42,25 @@ class Registrovani extends CI_Controller {
     // samo poziva prikazi sa drugim podacima..
     //isto kao i kod gosta samo se loaduje novi novi header.  
     public function index(){
-        
+       $podaci=[];
+       $this->prikazi("home.php",$podaci);
     }
     
     public function pretraga(){
         //uzme podatak 
-        $trazi=$this->input->get('pretraga');
+        $search = $this->input->get('searchBox');
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
+        $this->prikazi("rezultatipretrage.php",$data);
         // uradi pretragu 
         //poziva metodu prikazi za jela sto je dobio.
          // $this->prikazi("jelo stranica",array rezultata);
+    }
+    
+    
+    public function prikazipretraga(){
+        $data=[];
+        $this->prikazi("search.php",$data);
     }
     
     
@@ -69,11 +85,13 @@ class Registrovani extends CI_Controller {
      // dohvati njegove knjige i prosledi u prikazi sa odgovar
      //jucom stranicom.
     }
-    public function dodajOcenu(){
-        //gleda dal logovan itd.
-        // oceni z
-        // prikazi opet to jelo.
-        // znaci pozove prikazi
+    
+    
+    
+    public function oceni($idK,$ocena,$idR)
+    {
+        $this->Jelo->dodajOcenu($idK,$ocena,$idR);
+        prikaziJelo($idR);
     }
     
     public function ukloniOcenu(){
@@ -112,7 +130,9 @@ class Registrovani extends CI_Controller {
     
     
     private function prikazi($glavniDeo, $data){
-       // $this->load->view("sablon/header_korisnik.php", $data);
+       
+        $data['controller']='Registrovani';
+        $this->load->view("sablon/registrovan_header.php", $data);
         $this->load->view($glavniDeo, $data);
         $this->load->view("sablon/footer.php");
     }
@@ -121,6 +141,36 @@ class Registrovani extends CI_Controller {
         // ubija sesiju
         //preusmeri na gosta.
     }
+    
+    
+    
+     public function prikaziJelo($id){
+     $data=[];
+     $data['jelo']=$this->Jelo->dohvatiJeloId($id);
+     $data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
+     $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
+     $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
+       //$data = $this->Jelo->dohvatiPodatkeJelo($id);
+       $this->prikazi("recipe_demo.php",$data);
+    }
+    public function prikaziPrilika($prilika){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
+        $this->prikazi("rezultatipretrage.php",$data);
+    }
+    
+    public function prikaziPoSastojku($sastojak){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloSastojak($sastojak);
+        $this->prikazi("rezultatipretrage.php",$data);
+    }
+    
+     public function prikaziKategoriju($kategorija){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
+        $this->prikazi("rezultatipretrage.php",$data);
+    }
+    
 }
     
     

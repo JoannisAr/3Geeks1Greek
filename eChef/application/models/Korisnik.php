@@ -11,17 +11,28 @@
  *
  * @author Korisnik
  */
-class Korisnik {
+class Korisnik extends CI_Model{
    /* private $ime;
     private $prezime;
     private $korisnicko_ime;
     private $lozinka;
     private tip/vrsta
+ */ // nekaki ovakvi podaci..
 
-    */ // nekaki ovakvi podaci..
-    public static function dohvatiKorisnika($korisnicko_ime){
-        $result=$this->db->where('username',$korisnicko_ime)->get('korisnik');
-        $korisnik=$result->row();
-       return $korisnik;
+    public function __construct() {
+        parent::__construct();
+    }
+    
+    
+    
+    
+   
+    public function dohvatiKorisnika($korisnicko_ime){
+        $this->db->select("idK,username,password,ime,prezime,mail,oznaka");
+        $this->db->from("korisnik");
+        $this->db->where("username",$korisnicko_ime);
+        $query=$this->db->get();
+        
+        return $query->result();
     }
 }

@@ -139,7 +139,7 @@
                                     </li>
 				    <li>
                                         
-                                        <a href="<?php echo site_url("Gost/prikazipretraga"); ?>"><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
+                                        <a href="<?php echo site_url("$controller/prikazipretraga"); ?>"><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
                                     
                                     </li>
                                 </ul>

@@ -83,4 +83,17 @@ class Jelo extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+    
+    public function dodajOcenu($idK,$ocena,$idR)
+    {
+       $date=new DateTime();
+        $data = array(
+            'idK' => $idK,
+            'idR' => $idR ,
+            'ocena' => $ocena 
+            
+        );
+
+        $this->db->insert('ocenjuje', $data); 
+    }
 }

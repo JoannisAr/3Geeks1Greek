@@ -30,7 +30,7 @@
 							
 								
 								
-                                <h2 class="text-center margin-top-10">Rate this recipe. You need to <a href="pages-login.html"><font color="grey">login</font></a></h2>
+                                <h2 class="text-center margin-top-10">Rate this recipe. You need to <a href="<?php echo site_url("$controller/oceni/".$this->session->userdata('korisnik')->idK."/4/".$jelo[0]->idR); ?>"><font color="grey">login</font></a></h2>
                                 <p class="text-center margin-bottom-30"><!-- My Skills -->
                                     <h3 class="margin-bottom-10">Rating</h3>
                                     <h3 class="progress-label"><a href="#">Par excellence</a>
@@ -50,21 +50,21 @@
                                         </div>
                                     </div>
                                     
-                                    <h3 class="progress-label"><a href="<?php echo site_url('Gost/prikaziHome/')?>">Excelent</a>
+                                    <h3 class="progress-label"><a href="<?php echo site_url("$controller/oceni/".$this->session->userdata('korisnik')->idK."/3/".$jelo[0]->idR); ?>">Excelent</a>
                                         <span class="pull-right"><?php $suma=0; $brojt=0; foreach($ocene as $ocena){if($ocena->ocena==3){$brojt=$ocena->broj;} $suma+=$ocena->broj; } echo (($brojt/$suma)*100)."%"; ?></span>
                                     </h3>
                                     <div class="progress progress-sm">
                                         <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" style="width: <?php $suma=0; $brojt=0; foreach($ocene as $ocena){if($ocena->ocena==3){$brojt=$ocena->broj;} $suma+=$ocena->broj; } echo (($brojt/$suma)*100)."%"; ?>">
                                         </div>
                                     </div>
-                                    <h3 class="progress-label"><a href="#">Very good</a>
+                                    <h3 class="progress-label"><a href="<?php echo site_url("$controller/oceni/".$this->session->userdata('korisnik')->idK."/2/".$jelo[0]->idR); ?>">Very good</a>
                                         <span class="pull-right"><?php $suma=0; $brojt=0; foreach($ocene as $ocena){if($ocena->ocena==2){$brojt=$ocena->broj;} $suma+=$ocena->broj; } echo (($brojt/$suma)*100)."%"; ?></span>
                                     </h3>
                                     <div class="progress progress-sm">
                                         <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" style="width: <?php $suma=0; $brojt=0; foreach($ocene as $ocena){if($ocena->ocena==2){$brojt=$ocena->broj;} $suma+=$ocena->broj; } echo (($brojt/$suma)*100)."%"; ?>">
                                         </div>
                                     </div>
-                                    <h3 class="progress-label"><a href="#">Not so tasty</a>
+                                    <h3 class="progress-label"><a href="<?php echo site_url("$controller/oceni/".$this->session->userdata('korisnik')->idK."/1/".$jelo[0]->idR); ?>">Not so tasty</a>
                                         <span class="pull-right"><?php $suma=0; $brojt=0; foreach($ocene as $ocena){if($ocena->ocena==1){$brojt=$ocena->broj;} $suma+=$ocena->broj; } echo (($brojt/$suma)*100)."%"; ?></span>
                                     </h3>
                                     <div class="progress progress-sm">

@@ -1,4 +1,6 @@
- <div id="slideshow" class="bottom-border-shadow">
+
+
+<div id="slideshow" class="bottom-border-shadow">
                 <div class="container no-padding background-white bottom-border">
                     <div class="row">
                         <!-- Carousel Slideshow -->
@@ -14,16 +16,16 @@
                             <!-- Carousel Images -->
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="<?php echo base_url();?>assets/img/slideshow/slide1.jpg">
+                                    <img src="<?php echo base_url()?>assets/img/slideshow/slide1.jpg">
                                 </div>
                                 <div class="item">
-                                    <img src="<?php echo base_url();?>assets/img/slideshow/slide2.jpg">
+                                    <img src="<?php echo base_url()?>assets/img/slideshow/slide2.jpg">
                                 </div>
                                 <div class="item">
-                                    <img src="<?php echo base_url();?>assets/img/slideshow/slide3.jpg">
+                                    <img src="<?php echo base_url()?>assets/img/slideshow/slide3.jpg">
                                 </div>
                                 <div class="item">
-                                    <img src="<?php echo base_url();?>assets/img/slideshow/slide4.jpg">
+                                    <img src="<?php echo base_url()?>assets/img/slideshow/slide4.jpg">
                                 </div>
                             </div>
                             <!-- End Carousel Images -->
@@ -97,7 +99,7 @@
                             <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
                                 <a href="recipe1.html">
                                     <figure class="animate fadeInLeft">
-                                        <img alt="image1" src="<?php echo base_url();?>assets/img/frontpage/image3.jpg">
+                                        <img alt="image1" src="<?php echo base_url()?>assets/img/frontpage/image3.jpg">
                                         <figcaption>
                                             <h3>Vegetable Strudel</h3>
                                             <span>Vegetables Appetizers Economical Dishes Light Dishes Vegetarian Dairy Free Lent / Fasting Diet Sugar Free</span>
@@ -110,7 +112,7 @@
                             <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
                                 <a href="#">
                                     <figure class="animate fadeIn">
-                                        <img alt="image2" src="<?php echo base_url();?>assets/img/frontpage/image2.jpg">
+                                        <img alt="image2" src="<?php echo base_url()?>assets/img/frontpage/image2.jpg">
                                         <figcaption>
                                             <h3>Tahini Sweet Bread</h3>
                                             <span>Desserts Easter</span>
@@ -123,7 +125,7 @@
                             <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
                                 <a href="#">
                                     <figure class="animate fadeInRight">
-                                        <img alt="image3" src="<?php echo base_url();?>assets/img/frontpage/image1.jpg">
+                                        <img alt="image3" src="<?php echo base_url()?>assets/img/frontpage/image1.jpg">
                                         <figcaption>
                                             <h3>Savory cupcakes made with crepe batter</h3>
                                             <span>Snacks and Sandwiches Appetizers Finger Food Easter Childrens' Birthday Parties  </span>
@@ -136,7 +138,7 @@
                             <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
                                 <a href="#">
                                     <figure class="animate fadeInLeft">
-                                        <img alt="image4" src="<?php echo base_url();?>assets/img/frontpage/image4.jpg">
+                                        <img alt="image4" src="<?php echo base_url()?>assets/img/frontpage/image4.jpg">
                                         <figcaption>
                                             <h3>Chocolate peanut butter treats</h3>
                                             <span>Chocolate Desserts Kid Meals Childrens' Birthday Parties Student Meals </span>
@@ -149,7 +151,7 @@
                             <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
                                 <a href="#">
                                     <figure class="animate fadeIn">
-                                        <img alt="image5" src="<?php echo base_url();?>assets/img/frontpage/image5.jpg">
+                                        <img alt="image5" src="<?php echo base_url()?>assets/img/frontpage/image5.jpg">
                                         <figcaption>
                                             <h3>Goat Cheese and Caramelized Onion Turnovers</h3>
                                             <span>Cheese Snacks and Sandwiches Appetizers Finger Food Childrens' Birthday Parties </span>
@@ -162,7 +164,7 @@
                             <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
                                 <a href="#">
                                     <figure class="animate fadeInRight">
-                                        <img alt="image6" src="<?php echo base_url();?>assets/img/frontpage/image6.jpg">
+                                        <img alt="image6" src="<?php echo base_url()?>assets/img/frontpage/image6.jpg">
                                         <figcaption>
                                             <h3>Cuttlefish and spinach stew</h3>
                                             <span>Seafood Main Course Economical Dishes Vegetarian Lent / Fasting </span>
