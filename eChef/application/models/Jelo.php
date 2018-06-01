@@ -90,10 +90,8 @@ class Jelo extends CI_Model{
         $data = array(
             'idK' => $idK,
             'idR' => $idR ,
-            'ocena' => $ocena 
-            
+            'ocena' => $ocena           
         );
-
         $this->db->insert('ocenjuje', $data); 
     }
 }

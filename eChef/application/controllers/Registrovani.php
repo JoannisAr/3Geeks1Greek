@@ -12,22 +12,10 @@
  */
 class Registrovani extends CI_Controller {
     public function __construct() {
-       
-        
-       /*(session_start();
-        if(!isset($_SESSION['korisnik'])
-        * header("Location:?controller=Gost&akcija=index");
-        * else if(isset($_SESSION[kuvar]== 1)
-        *header("Location:?controller=Kuvar&akcija=index");
-         else if(isset($_SESSION[admin]== 1)
-        *   header("Location:?controller=Admin&akcija=index");
-         */
-		 
-		   parent::__construct();
-                   
-                   
-                   
-                   $this->load->model('Jelo');
+           parent::__construct();
+           $this->load->model('Jelo');
+           $this->load->model('Korisnik');
+           
           if (($this->session->userdata('korisnik')) == NULL) {
             redirect("Gost");
           }
@@ -117,17 +105,13 @@ class Registrovani extends CI_Controller {
         //znaci pozove prikazi.         
     }
     
-    public function dodajUKnjigu(){
-        
+    public function dodajUKnjigu($id){
+        $this->Korisnik->dodajUKnjigu($this->session->userdata('korisnik')->idK,$id);
+     //  $this->prikaziJelo($id);
+     }
+    public function ukloniIzKnjige($id){
+     
     }
-    public function ukloniIzKnjige(){
-        // proveri dal logovan itd.
-        //proveri dal ima vec u knjigu
-        // ukloni 
-    }
-    
-    
-    
     
     private function prikazi($glavniDeo, $data){
        

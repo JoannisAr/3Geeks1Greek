@@ -2,9 +2,10 @@
                 <div class="container background-white">
                     <div class="row margin-vert-30">
                         <div class="col-md-12">
-                            <h2><?php echo $jelo[0]->naziv; ?></h2>
-                            <a href="#" class="btn btn-default" >add to book</a>>
-                            <a href="#" class="btn btn-default" >remove from book</a>
+                            <h2><?php echo $jelo[0]->naziv; ?></h2>                     
+                            <a href="<?php echo site_url("$controller/dodajUKnjigu/".$jelo[0]->idR);?>" class="btn btn-default" >add to book</a>
+                            <a href="<?php echo site_url("$controller/ukloniIzKnjige/".$jelo[0]->idR);?>" class="btn btn-default" >remove from book</a>
+
                             <div class="row">
                                 <div class="col-md-6 animate fadeIn">
                                     <img src="<?php echo base_url();?>assets/img/fillers/image3.jpg" alt="Strudel" class="margin-top-10">
