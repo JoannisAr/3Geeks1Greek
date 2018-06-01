@@ -107,7 +107,8 @@ class Registrovani extends CI_Controller {
     
     public function dodajUKnjigu($id){
         $this->Korisnik->dodajUKnjigu($this->session->userdata('korisnik')->idK,$id);
-     //  $this->prikaziJelo($id);
+       redirect(site_url("Registrovani/prikaziJelo/".$id));
+        // $this->prikaziJelo($id);
      }
     public function ukloniIzKnjige($id){
      
