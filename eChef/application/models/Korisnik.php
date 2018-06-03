@@ -51,7 +51,24 @@ class Korisnik extends CI_Model{
         return;
     }
     public function ukloniIzKnjige($id_korisnika,$id_jela){
-       // $this->db->delete('veza_recepti_knjiga', array('idK' => $$id_korisnika,'idR' => $id)); 
-       //return;
+        $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
+       $knjiga = $query->row();
+       if($knjiga){
+       $this->db->delete('veza_recepti_knjiga', array('idK' => $knjiga->idK,'idR' => $id_jela)); 
+       }
+       return;
+    }
+    public function knjiga($id_korisnika){
+        $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
+        $knjiga = $query->row();
+        if($knjiga){
+            $this->db->select("r.idR,r.naziv,r.obrok,r.kategorija,r.spec_prilika");
+            $this->db->from("veza_recepti_knjiga k,recepti r");
+            $this->db->where("k.idK",$knjiga->idK);
+            $this->db->where("k.idR = r.idR");
+            $query=$this->db->get();    
+            return $query->result();   
+        }
+        return;
     }
 }

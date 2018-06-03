@@ -68,11 +68,11 @@ class Registrovani extends CI_Controller {
         // sa odgovarajucim prikazom i podacima
     }
     
-     public function knijga(){
-     // proveri dal validan korisnik itd.
-     // dohvati njegove knjige i prosledi u prikazi sa odgovar
-     //jucom stranicom.
-    }
+     public function knjiga(){
+        $data = [];
+        $data['jela'] = $this->Korisnik->knjiga($this->session->userdata('korisnik')->idK);
+        $this->prikazi("rezultatipretrage.php",$data);
+     }
     
     
     
@@ -106,14 +106,13 @@ class Registrovani extends CI_Controller {
     }
     
     public function dodajUKnjigu($id){
-        $this->Korisnik->dodajUKnjigu($this->session->userdata('korisnik')->idK,$id);
-       redirect(site_url("Registrovani/prikaziJelo/".$id));
-        // $this->prikaziJelo($id);
+       $this->Korisnik->dodajUKnjigu($this->session->userdata('korisnik')->idK,$id);
+       redirect(site_url("Registrovani/prikaziJelo/".$id));    
      }
     public function ukloniIzKnjige($id){
-     
+        $this->Korisnik->ukloniIzKnjige($this->session->userdata('korisnik')->idK,$id);
+        redirect(site_url("Registrovani/prikaziJelo/".$id)); 
     }
-    
     private function prikazi($glavniDeo, $data){
        
         $data['controller']='Registrovani';
