@@ -1,4 +1,3 @@
-
            <!-- === BEGIN CONTENT === -->
             <div id="content">
                 <div class="container background-white">
@@ -28,103 +27,30 @@
                                     </li>
                                 </ul>
                             </div>
-                            <!-- End Filter Buttons -->
+                     <!-- End Filter Buttons -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 portfolio-group no-padding">
                             <!-- Portfolio Item -->
-                            <div class="col-md-6 portfolio-item margin-bottom-40 filer-code">
-                                <div>
-                                    <a href="recipe1.html">
-									<figure>
-									<img src="assets/img/portfolio/image3.jpg" alt="image3">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Vegetable Strudel</h3>
-                                                <span>Vegetables Appetizers Economical Dishes Light Dishes Vegetarian Dairy Free Lent / Fasting Diet Sugar Free</span>
-                                            </figcaption>
-                                     </figure>
-                                    </a>
-                                </div>
-                            </div>
+                            <?php
+                              foreach ($jela as $jelo) {
+                           echo '<div class="'.'col-md-6 portfolio-item margin-bottom-40 filer-code"'.">";
+                             echo "<div>";
+                                   echo '<a href="recipe1.html">';
+                                  echo "<figure>";
+                                  ?>
+					<img src="<?php echo base_url();?>assets/img/portfolio/image3.jpg" alt= "image3">
+                                       <?php    echo"<figcaption>";
+                                              echo'<h3 class="'.'margin-top-20">'.$jelo->naziv."</h3>";
+                                       echo"<span>".$jelo->obrok.$jelo->kategorija."</span>";
+                                       echo"</figcaption>";
+                                     echo"</figure>";
+                                 echo"</a>";
+                           echo"</div>";
+                          echo"</div>";
+                          }?>
                             <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-6 portfolio-item margin-bottom-40 video">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image2.jpg" alt="image2">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Tahini Sweet Bread</h3>
-                                                <span>Desserts Easter</span>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-6 portfolio-item margin-bottom-40 video">
-                                <div>
-                                    <a href="#">
-									<figure>
-									<img src="assets/img/portfolio/image1.jpg" alt="image1">
-									<figcaption>
-									<h3 class="margin-top-20">Savory cupcakes made with crepe batter</h3>
-                                                <span>Snacks and Sandwiches Appetizers Finger Food Easter Childrens' Birthday Parties</span>
-                                    </figcaption>
-                                     </figure>
-                                        
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-6 portfolio-item margin-bottom-40 design">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image4.jpg" alt="image4">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Chocolate peanut butter treats</h3>
-                                                <span>Chocolate Desserts Kid Meals Childrens' Birthday Parties Student Meals</span>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-6 portfolio-item margin-bottom-40 audio">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image5.jpg" alt="image5">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Goat Cheese and Caramelized Onion Turnovers</h3>
-                                                <span>Cheese Snacks and Sandwiches Appetizers Finger Food Childrens' Birthday Parties</span>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-6 portfolio-item margin-bottom-40 design">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="assets/img/portfolio/image6.jpg" alt="image6">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Cuttlefish and spinach stew</h3>
-                                                <span>Seafood Main Course Economical Dishes Vegetarian Lent / Fasting </span>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            
                         </div>
                     </div>
                 </div>

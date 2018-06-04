@@ -71,11 +71,9 @@ class Registrovani extends CI_Controller {
      public function knjiga(){
         $data = [];
         $data['jela'] = $this->Korisnik->knjiga($this->session->userdata('korisnik')->idK);
-        $this->prikazi("rezultatipretrage.php",$data);
+        $this->prikazi("book-2-column.php",$data);
      }
-    
-    
-    
+
     public function oceni($idK,$ocena,$idR)
     {
         $this->Jelo->dodajOcenu($idK,$ocena,$idR);
