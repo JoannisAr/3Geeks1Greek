@@ -77,7 +77,7 @@ class Registrovani extends CI_Controller {
     public function oceni($idK,$ocena,$idR)
     {
         $this->Jelo->dodajOcenu($idK,$ocena,$idR);
-        $this->prikaziJelo($idR);
+       redirect(site_url("Registrovani/prikaziJelo/".$idR));
     }
     
     public function ukloniOcenu(){
@@ -99,19 +99,12 @@ class Registrovani extends CI_Controller {
         );
         
         $this->Jelo->dodajKomentar($data);
-        $this->prikaziJelo($data['idR']);
-        
+        redirect(site_url("Registrovani/prikaziJelo/".$data['idR']));
     }
-    
-    
-    
-    
-    
-    
     
     public function ukloniKomentar($idK,$idR){
         $this->Jelo->ukloniKomentar($idK);
-        $this->prikaziJelo($idR);
+        redirect(site_url("Registrovani/prikaziJelo/".$idR));
     }
     
     public function dodajUKnjigu($id){

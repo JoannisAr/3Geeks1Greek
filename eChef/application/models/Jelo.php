@@ -81,6 +81,7 @@ class Jelo extends CI_Model{
         $this->db->where("o.idR",$id);
         $this->db->group_by("ocena");
         $query = $this->db->get();
+        
         return $query->result();
     }
     
