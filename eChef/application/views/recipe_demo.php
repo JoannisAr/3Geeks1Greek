@@ -30,10 +30,10 @@
 							
 								
 								
-                                <h2 class="text-center margin-top-10">Rate this recipe. You need to <a href="<?php echo site_url("$controller/oceni/".$this->session->userdata('korisnik')->idK."/4/".$jelo[0]->idR); ?>"><font color="grey">login</font></a></h2>
+                                <h2 class="text-center margin-top-10">Rate this recipe. You need to <a href="#"><font color="grey">login</font></a></h2>
                                 <p class="text-center margin-bottom-30"><!-- My Skills -->
                                     <h3 class="margin-bottom-10">Rating</h3>
-                                    <h3 class="progress-label"><a href="#">Par excellence</a>
+                                    <h3 class="progress-label"><a href="<?php echo site_url("$controller/oceni/".$this->session->userdata('korisnik')->idK."/4/".$jelo[0]->idR); ?>">Par excellence</a>
                                         <span class="pull-right">
                                             <?php $suma=0; $brojt=0; 
                                             foreach($ocene as $ocena){
@@ -89,7 +89,12 @@
 									<?php
 										foreach($komentari as $komentar)
 										{
-											echo "<li><div class='recent-post'><p class='pull-left'>".$komentar->username."</p><a href='#' class='posts-list-title'>".$komentar->sadrzaj."</a><br><span class='recent-post-date'>".$komentar->vreme."</span></div><div class='clearfix'></div></li>";
+											echo "<li><div class='recent-post'><p class='pull-left'>".$komentar->username."</p><a href='#' class='pull-right' class='posts-list-title'>".$komentar->sadrzaj."</a><br><span class='recent-post-date'>".$komentar->vreme."</span></div><div class='clearfix'></div>"; 
+                                                                                        if($komentar->username == $this->session->userdata['korisnik']->username || $this->session->userdata['korisnik']->oznaka=='A')
+                                                                                        {
+                                                                                            
+                                                                                            echo "<a href=\" ".site_url($controller.'/ukloniKomentar/'.$komentar->idK.'/'.$jelo[0]->idR)." \" style='color:red;'>delete</a></li>";
+                                                                                        }
 										}
 									?>
 									
@@ -129,8 +134,9 @@
                                             <div id="collapse-Two" class="accordion-body collapse">
                                                 <div class="panel-body">
                                                     <p>
-														<form action="on click">
+                                                    <form action="<?php echo site_url("$controller/dodajKomentar") ?>" method="get">
 														<input type="text" name="comment" style="width:90%; height:90%;"><br>
+                                                                                                                <input type="text" name="idr" value="<?php echo $jelo[0]->idR; ?>" style="display:none">
 														<input type="submit" value="Submit">
 														</form> 
 													</p>

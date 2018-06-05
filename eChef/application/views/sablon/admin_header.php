@@ -125,7 +125,7 @@
                                         <a href="contact.html" class="fa-comment ">Logout</a>
                                     </li>                              
                                     <li>
-                                        <a href="searchpage.html" ><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
+                                        <a href="<?php echo site_url("$controller/prikazipretraga"); ?>" ><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
                                     </li>
                                 </ul>
                             </div>

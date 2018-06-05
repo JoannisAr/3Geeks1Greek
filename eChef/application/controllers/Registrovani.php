@@ -91,7 +91,7 @@ class Registrovani extends CI_Controller {
     public function oceni($idK,$ocena,$idR)
     {
         $this->Jelo->dodajOcenu($idK,$ocena,$idR);
-        prikaziJelo($idR);
+        $this->prikaziJelo($idR);
     }
     
     public function ukloniOcenu(){
@@ -102,19 +102,30 @@ class Registrovani extends CI_Controller {
         //znaci pozove prikazi.
     }
     
-    public function dodajKomentar(){
-        //gleda dal logovan itd.
-        // doda komentar
-        // prikazi opet to jelo.
-        // znaci pozove prikazi
+    
+    public function dodajKomentar()
+    { 
+        $data = array
+        (
+            'idKorisnika'=> $this->session->userdata('korisnik')->idK,
+            'sadrzaj' => $this->input->get('comment'),
+            'idR' => $this->input->get('idr')
+        );
+        
+        $this->Jelo->dodajKomentar($data);
+        $this->prikaziJelo($data['idR']);
+        
     }
     
-    public function ukloniKomentar(){
-        //gleda dal logovan itd
-        // gledaj dal je komentariso do sad.
-        // ukloni ocenu
-        // prikaze opet to jelo
-        //znaci pozove prikazi.         
+    
+    
+    
+    
+    
+    
+    public function ukloniKomentar($idK,$idR){
+        $this->Jelo->ukloniKomentar($idK);
+        $this->prikaziJelo($idR);
     }
     
     public function dodajUKnjigu(){
