@@ -11,6 +11,6 @@
  *
  * @author Korisnik
  */
-class Admin {
-    //put your code here
+class Admin{
+    
 }

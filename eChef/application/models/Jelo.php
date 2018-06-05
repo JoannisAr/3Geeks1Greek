@@ -86,12 +86,56 @@ class Jelo extends CI_Model{
     
     public function dodajOcenu($idK,$ocena,$idR)
     {
-       $date=new DateTime();
-        $data = array(
-            'idK' => $idK,
-            'idR' => $idR ,
-            'ocena' => $ocena           
-        );
-        $this->db->insert('ocenjuje', $data); 
+        $this->db->select('*');
+        $this->db->from('ocenjuje');
+        $this->db->where('idK',$idK);
+        $this->db->where('idR',$idR);
+        $q= $this->db->get();
+        $result=$q->result();
+      
+        
+        if($result==NULL)
+        {
+            $data = array
+            (
+                'idK' => $idK,
+                'idR' => $idR ,
+                'ocena' => $ocena,
+                'datum'=> date('Y-m-d H:i:s')
+            );
+            
+            $this->db->insert('ocenjuje', $data); 
+        }
+        else
+        {
+            $data = array(
+               'ocena' => $ocena,
+                'datum'=> date('Y-m-d H:i:s')
+            );
+
+            $this->db->where('idK', $idK);
+            $this->db->where('idR', $idR);
+            $this->db->update('ocenjuje', $data); 
+        }   
     }
+    
+    
+    public function dodajKomentar($data)
+    {
+        
+        $podaci=array
+        (
+            'idKorisnika'=>$data['idKorisnika'],
+            'sadrzaj'=>$data['sadrzaj'],
+            'idR'=>$data['idR'],
+            'vreme'=>date('Y-m-d H:i:s')
+        );
+        
+        $this->db->insert('komentar', $podaci);
+    }
+    public function ukloniKomentar($idK)
+    {
+        $this->db->delete('komentar', array('idK' => $idK)); 
+    }
+    
 }
