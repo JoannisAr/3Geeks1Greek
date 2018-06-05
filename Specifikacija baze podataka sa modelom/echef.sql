@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 01, 2018 at 05:54 PM
+-- Generation Time: Jun 05, 2018 at 01:39 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -107,7 +107,8 @@ INSERT INTO `korisnik` (`idK`, `username`, `password`, `ime`, `prezime`, `mail`,
 (1, 'janis', 'asdas', 'asfasf', 'asfas', 'asdas', 'R'),
 (2, 'vuk', 'asdas', 'asdasx', 'saxs', 'xgax', 'R'),
 (3, 'jelena', 'asdasf', 'fssaf', 'afs', 'dasa', 'R'),
-(4, 'Ivana', 'asda', 'saf', 'xx', 'asx', 'R');
+(4, 'Ivana', 'asda', 'saf', 'xx', 'asx', 'R'),
+(6, 'jeca', 'jeca', 'jelena', 'savic', 'asfjas@gasdas.com', 'K');
 
 -- --------------------------------------------------------
 
@@ -192,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `recepti` (
   `obrok` varchar(20) NOT NULL,
   `kategorija` varchar(20) NOT NULL,
   `spec_prilika` varchar(20) DEFAULT NULL,
-  `slika` blob,
+  `slika` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -201,10 +202,10 @@ CREATE TABLE IF NOT EXISTS `recepti` (
 --
 
 INSERT INTO `recepti` (`idR`, `naziv`, `sadrzaj`, `obrok`, `kategorija`, `spec_prilika`, `slika`) VALUES
-(1, 'pasta', '1) uradi\r\n2) skuvaj\r\n3) janis\r\n4) VUK ', 'rucak', 'Pasta', 'Christmas', NULL),
-(2, 'pizza', '1)sir\r\n2)paradajz\r\n3)kecap\r\n4)sunka', 'vecera', 'Pasta', 'Christmas', NULL),
+(2, 'pizza', '1)sir\r\n2)paradajz\r\n3)kecap\r\n4)sunka', 'vecera', 'Pasta', 'Christmas', '/images/pizza.jpg'),
 (3, 'torta', 'ima secera', 'rucak', 'Chocolate', 'valentines day', NULL),
-(4, 'keks', 'ima brasna', 'vecera', 'Chocolate', 'valentines day', NULL);
+(4, 'keks', 'ima brasna', 'vecera', 'Chocolate', 'valentines day', NULL),
+(1, 'pasta', 'ma ima razno sta sad da ti pisem', 'rucak', 'neka', 'neka', '/images/pasta.jpg');
 
 -- --------------------------------------------------------
 

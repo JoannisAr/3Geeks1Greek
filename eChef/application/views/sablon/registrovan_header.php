@@ -122,7 +122,7 @@
                                         </ul>
                                     </li>                                                           
 				    <li>
-                                        <a href="<?php echo site_url("$controller/knjiga");?>" class="fa-comment ">Book</a>
+                                        <a href="<?php echo site_url("$controller/prikaziDodavanjeRecepta");?>" class="fa-comment ">Book</a>
                                     </li>
                                     <li>
                                         <span class="fa-font ">User</span>

@@ -11,13 +11,32 @@
  *
  * @author Korisnik
  */
-class Kuvar {
+class Kuvar extends CI_Controller {
+    public function __construct() {
+         parent::__construct();
+    }
+    public function index(){
+       $podaci=[];
+       $this->prikazi("home.php",$podaci);
+    }
+    
+    private function prikazi($glavniDeo, $data){
+        $data['controller']='Kuvar';
+        $this->load->view("sablon/chef_header.php", $data);
+        $this->load->view($glavniDeo, $data);
+        $this->load->view("sablon/footer.php");
+    }
+
      public function pretraga(){
         //uzme podatak 
         $trazi=$this->input->get('pretraga');
         // uradi pretragu 
         //poziva metodu prikazi za jela sto je dobio.
          // $this->prikazi("jelo stranica",array rezultata);
+    }
+    public function prikaziDodavanjeRecepta(){
+        $data=[];
+        $this->prikazi("recipe-uploadx.php",$data);
     }
       public function prikaziPrilika(){
     }

@@ -62,7 +62,7 @@ class Korisnik extends CI_Model{
         $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
         $knjiga = $query->row();
         if($knjiga){
-            $this->db->select("r.idR,r.naziv,r.obrok,r.kategorija,r.spec_prilika");
+            $this->db->select("r.idR,r.naziv,r.obrok,r.kategorija,r.spec_prilika,r.slika");
             $this->db->from("veza_recepti_knjiga k,recepti r");
             $this->db->where("k.idK",$knjiga->idK);
             $this->db->where("k.idR = r.idR");

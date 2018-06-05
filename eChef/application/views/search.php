@@ -44,7 +44,7 @@
                                         <div class="col-md-6">
                                              <div class="input-group margin-bottom-20">
                                                  <input class="form-control" type="text" name="searchBox">
-                                    </div>
+                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <button class="btn btn-primary pull-center" type="submit">Search</button>

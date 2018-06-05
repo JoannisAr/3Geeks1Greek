@@ -152,7 +152,6 @@ class Registrovani extends CI_Controller {
         $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
         $this->prikazi("rezultatipretrage.php",$data);
     }
-    
 }
     
     

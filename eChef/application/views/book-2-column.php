@@ -40,8 +40,9 @@
                                    echo '<a href="recipe1.html">';
                                   echo "<figure>";
                                   ?>
-					<img src="<?php echo base_url();?>assets/img/portfolio/image3.jpg" alt= "image3">
-                                       <?php    echo"<figcaption>";
+                            <?php   
+					echo '<img src="'.base_url().$jelo->slika.'">';
+                                           echo"<figcaption>";
                                               echo'<h3 class="'.'margin-top-20">'.$jelo->naziv."</h3>";
                                        echo"<span>".$jelo->obrok.$jelo->kategorija."</span>";
                                        echo"</figcaption>";
