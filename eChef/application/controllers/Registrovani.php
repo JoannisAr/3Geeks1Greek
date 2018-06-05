@@ -12,22 +12,10 @@
  */
 class Registrovani extends CI_Controller {
     public function __construct() {
-       
-        
-       /*(session_start();
-        if(!isset($_SESSION['korisnik'])
-        * header("Location:?controller=Gost&akcija=index");
-        * else if(isset($_SESSION[kuvar]== 1)
-        *header("Location:?controller=Kuvar&akcija=index");
-         else if(isset($_SESSION[admin]== 1)
-        *   header("Location:?controller=Admin&akcija=index");
-         */
-		 
-		   parent::__construct();
-                   
-                   
-                   
-                   $this->load->model('Jelo');
+           parent::__construct();
+           $this->load->model('Jelo');
+           $this->load->model('Korisnik');
+           
           if (($this->session->userdata('korisnik')) == NULL) {
             redirect("Gost");
           }
@@ -80,14 +68,12 @@ class Registrovani extends CI_Controller {
         // sa odgovarajucim prikazom i podacima
     }
     
-     public function knijga(){
-     // proveri dal validan korisnik itd.
-     // dohvati njegove knjige i prosledi u prikazi sa odgovar
-     //jucom stranicom.
-    }
-    
-    
-    
+     public function knjiga(){
+        $data = [];
+        $data['jela'] = $this->Korisnik->knjiga($this->session->userdata('korisnik')->idK);
+        $this->prikazi("book-2-column.php",$data);
+     }
+
     public function oceni($idK,$ocena,$idR)
     {
         $this->Jelo->dodajOcenu($idK,$ocena,$idR);
@@ -128,18 +114,14 @@ class Registrovani extends CI_Controller {
         $this->prikaziJelo($idR);
     }
     
-    public function dodajUKnjigu(){
-        
+    public function dodajUKnjigu($id){
+       $this->Korisnik->dodajUKnjigu($this->session->userdata('korisnik')->idK,$id);
+       redirect(site_url("Registrovani/prikaziJelo/".$id));    
+     }
+    public function ukloniIzKnjige($id){
+        $this->Korisnik->ukloniIzKnjige($this->session->userdata('korisnik')->idK,$id);
+        redirect(site_url("Registrovani/prikaziJelo/".$id)); 
     }
-    public function ukloniIzKnjige(){
-        // proveri dal logovan itd.
-        //proveri dal ima vec u knjigu
-        // ukloni 
-    }
-    
-    
-    
-    
     private function prikazi($glavniDeo, $data){
        
         $data['controller']='Registrovani';
@@ -181,7 +163,6 @@ class Registrovani extends CI_Controller {
         $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
         $this->prikazi("rezultatipretrage.php",$data);
     }
-    
 }
     
     

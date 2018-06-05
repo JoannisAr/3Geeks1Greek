@@ -121,8 +121,8 @@
                                             
                                         </ul>
                                     </li>                                                           
-									<li>
-                                        <a href="contact.html" class="fa-comment ">Book</a>
+				    <li>
+                                        <a href="<?php echo site_url("$controller/prikaziDodavanjeRecepta");?>" class="fa-comment ">Book</a>
                                     </li>
                                     <li>
                                         <span class="fa-font ">User</span>
@@ -135,7 +135,7 @@
                                             </li>										
                                         </ul>
                                     </li>
-									<li>
+				    <li>
                                         <a href="contact.html" class="fa-comment ">Logout</a>
                                     </li>
                                     <li>

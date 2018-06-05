@@ -116,10 +116,7 @@ class Jelo extends CI_Model{
             $this->db->where('idK', $idK);
             $this->db->where('idR', $idR);
             $this->db->update('ocenjuje', $data); 
-        }
-        
-        
-      
+        }   
     }
     
     
