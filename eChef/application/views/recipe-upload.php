@@ -1,4 +1,4 @@
-  <div id="content">
+  <!--<div id="content">-->
                 <div class="container background-white">
                     <div class="row margin-vert-30">
                         <!-- Register Box -->
@@ -7,9 +7,8 @@
                                 <div class="signup-header">
                                     <h2><b>Recepie upload</b></h2>
                                 </div>
-                               
-								<hr>
-								<label><b>Place to upload a recepie:</b></label>
+						<hr>
+                               <label><b>Place to upload a recepie:</b></label>
                                 <input class="form-control margin-bottom-20" type="file">
 								<br>
 								<label><b>Place to upload a photo:</b></label>

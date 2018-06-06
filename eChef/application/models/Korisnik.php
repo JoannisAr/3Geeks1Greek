@@ -25,33 +25,12 @@ class Korisnik extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-
-    /* public function dohvatiKorisnika($korisnicko_ime){
-      $this->db->select("idK,username,password,ime,prezime,mail,oznaka");
-      $this->db->from("korisnik");
-      $this->db->where("username",$korisnicko_ime);
-      $query=$this->db->get();
-
-      return $query->result();
-      } */
-
     public function dohvatiKorisnika2($username) {
 
         $result = $this->db->where('username', $username)->get('korisnik');
         $korisnik = $result->row();
         return $korisnik;
     }
-
-    //cuva osnovne podatke sa 1. prozora registracije zajednickog za kuvara i reigstrovanog kor. u objektu modela
-    //jer se gube iz posta nakon submita sa 2. stranice registracije koja sadrzi specificne podatke za svaku kategoriju korisnika
-    //a osnovni podaci se ne smeju odmah po prikupljanju upisati u bazu jer korisnik moze odustati od registracije
-    /*public function saveReg($ime, $prezime, $email, $username, $password) {
-        $this->$ime = $ime;
-        $this->$prezime = $prezime;
-        $this->$email = $email;
-        $this->$username = $username;
-        $this->$password = $password;
-    }*/
 
     //poziva se da se unesu osnovni podaci korisnika
     public function unesiKorisnika($ime, $prezime, $email, $username, $password) {
@@ -66,7 +45,7 @@ class Korisnik extends CI_Model {
 
         $this->db->insert('korisnik', $data);
     }
-//***********
+
     public function getId($username) {
 
         $this->db->select("idK");
@@ -103,7 +82,44 @@ class Korisnik extends CI_Model {
 
         $this->db->insert('registrovani', $data);
     }
-
    
-
+    public function dodajUKnjigu($id_korisnika,$id_jela){
+        $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
+        $knjiga = $query->row();
+        if(!$knjiga){        
+             $data = array('idKorisnika' => $id_korisnika);
+             $this->db->insert('knjiga', $data); 
+             
+            $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
+            $knjiga = $query->row();
+        }
+        $query = $this->db->from("veza_recepti_knjiga")->where("idK",$knjiga->idK)->where("idR",$id_jela)->get();
+        $ima = $query->row();
+        if(!$ima){
+            $data = array('idK' =>$knjiga->idK ,'idR' => $id_jela);
+            $this->db->insert('veza_recepti_knjiga', $data); 
+        }
+        return;
+    }
+    public function ukloniIzKnjige($id_korisnika,$id_jela){
+        $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
+       $knjiga = $query->row();
+       if($knjiga){
+       $this->db->delete('veza_recepti_knjiga', array('idK' => $knjiga->idK,'idR' => $id_jela)); 
+       }
+       return;
+    }
+    public function knjiga($id_korisnika){
+        $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
+        $knjiga = $query->row();
+        if($knjiga){
+            $this->db->select("r.idR,r.naziv,r.obrok,r.kategorija,r.spec_prilika,r.slika");
+            $this->db->from("veza_recepti_knjiga k,recepti r");
+            $this->db->where("k.idK",$knjiga->idK);
+            $this->db->where("k.idR = r.idR");
+            $query=$this->db->get();    
+            return $query->result();   
+        }
+        return;
+    }
 }

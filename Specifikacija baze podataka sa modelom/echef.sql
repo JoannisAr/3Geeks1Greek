@@ -42,11 +42,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 DROP TABLE IF EXISTS `knjiga`;
 CREATE TABLE IF NOT EXISTS `knjiga` (
-  `idK` int(11) NOT NULL,
+  `idK` int(11) NOT NULL AUTO_INCREMENT,
   `idKorisnika` int(11) DEFAULT NULL,
   PRIMARY KEY (`idK`),
   KEY `R_15` (`idKorisnika`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+INSERT INTO `knjiga` (`idK`, `idKorisnika`) VALUES
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,8 @@ INSERT INTO `korisnik` (`idK`, `username`, `password`, `ime`, `prezime`, `mail`,
 (1, 'janis', 'asdas', 'asfasf', 'asfas', 'asdas', 'R'),
 (2, 'vuk', 'asdas', 'asdasx', 'saxs', 'xgax', 'R'),
 (3, 'jelena', 'asdasf', 'fssaf', 'afs', 'dasa', 'R'),
-(4, 'Ivana', 'asda', 'saf', 'xx', 'asx', 'R');
+(4, 'Ivana', 'asda', 'saf', 'xx', 'asx', 'R'),
+(6, 'jeca', 'jeca', 'jelena', 'savic', 'asfjas@gasdas.com', 'K');
 
 -- --------------------------------------------------------
 
@@ -172,15 +176,11 @@ CREATE TABLE IF NOT EXISTS `omiljeni` (
   KEY `R_34` (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `omiljeni`
---
 
 INSERT INTO `omiljeni` (`idS`, `idK`) VALUES
 (3, 1),
 (4, 1),
 (5, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `recepti` (
   `obrok` varchar(20) NOT NULL,
   `kategorija` varchar(20) NOT NULL,
   `spec_prilika` varchar(20) DEFAULT NULL,
-  `slika` blob,
+  `slika` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -204,10 +204,10 @@ CREATE TABLE IF NOT EXISTS `recepti` (
 --
 
 INSERT INTO `recepti` (`idR`, `naziv`, `sadrzaj`, `obrok`, `kategorija`, `spec_prilika`, `slika`) VALUES
-(1, 'pasta', '1) uradi\r\n2) skuvaj\r\n3) janis\r\n4) VUK ', 'rucak', 'Pasta', 'Christmas', NULL),
-(2, 'pizza', '1)sir\r\n2)paradajz\r\n3)kecap\r\n4)sunka', 'vecera', 'Pasta', 'Christmas', NULL),
+(2, 'pizza', '1)sir\r\n2)paradajz\r\n3)kecap\r\n4)sunka', 'vecera', 'Pasta', 'Christmas', '/images/pizza.jpg'),
 (3, 'torta', 'ima secera', 'rucak', 'Chocolate', 'valentines day', NULL),
-(4, 'keks', 'ima brasna', 'vecera', 'Chocolate', 'valentines day', NULL);
+(4, 'keks', 'ima brasna', 'vecera', 'Chocolate', 'valentines day', NULL),
+(1, 'pasta', 'ma ima razno sta sad da ti pisem', 'rucak', 'neka', 'neka', '/images/pasta.jpg');
 
 -- --------------------------------------------------------
 
@@ -236,6 +236,7 @@ CREATE TABLE IF NOT EXISTS `sastojci` (
   `opis` text,
   `kategorija` varchar(20) NOT NULL,
   PRIMARY KEY (`idS`)
+
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
@@ -276,6 +277,11 @@ CREATE TABLE IF NOT EXISTS `veza_recepti_knjiga` (
   PRIMARY KEY (`idK`,`idR`),
   KEY `R_30` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `veza_recepti_knjiga` (`idK`, `idR`) VALUES
+(9, 1),
+(9, 2);
+
 
 -- --------------------------------------------------------
 

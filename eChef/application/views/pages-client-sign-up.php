@@ -16,6 +16,7 @@
                     <input type="hidden" value="<?php echo $username; ?>" name="username">
                     <input type="hidden" value="<?php echo $password; ?>" name="password">
                     
+
                     <div class="signup-header">
                         <h2>Client registration</h2>
                         <p>Please fill the following form to get started.</p>
@@ -24,24 +25,30 @@
                     <br>
                     <label>Fruit and vegetables</label>
                     <select class="form-control margin-bottom-20" multiple size="5" name="veggie[]" required>
+  
+
                         <option value="potato">Potato</option>
                         <option value="onion">Onion</option>
                         <option value="pepper">Pepper</option>
                         <option value="carrot">Carrot</option>
+
                         <option value="peas">Peas</option>
                         <option value="broccoli">Broccoli</option>
-			<option value="avocado">Avocado</option>
+			                  <option value="avocado">Avocado</option>
+
                         <option value="corn">Corn</option>
                         <option value="tomato">Tomato</option>
                         <option value="beetroot">Beetroot</option>
                         <option value="pumpkin">Pumpkin</option>
                         <option value="apple">Apple</option>
                         <option value="pear">Pear</option>
+
                         <option value="strawberry">Strawberry</option>
                         <option value="pineapple">Pineapple</option>
                         <option value="orange">Orange</option>
                     </select>
                     <label>Meats</label>
+
                     <select class="form-control margin-bottom-20" multiple size="5" name="meat[]" required>
                         <option value="lamb">Lamb</option>
                         <option value="pork">Pork</option>
@@ -55,6 +62,8 @@
                     <option value="chocolate">Chocolate</option>
                     <option value="vanilla">Vanilla</option>
                     <option value="caramel">Caramel</option>
+
+
                 </select>
                 <div class="row">
                     <div class="col-sm-6">
@@ -81,6 +90,7 @@
 
                     </select>
                      </div>
+
             <div class="col-lg-4 text-right">
                 <a><button class="btn btn-primary" type="submit">Submit and get started</button></a>
             </div>
