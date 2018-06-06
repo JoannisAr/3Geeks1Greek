@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 06, 2018 at 02:42 PM
+-- Generation Time: Jun 06, 2018 at 05:54 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -48,6 +48,10 @@ CREATE TABLE IF NOT EXISTS `knjiga` (
   KEY `R_15` (`idKorisnika`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `knjiga`
+--
+
 INSERT INTO `knjiga` (`idK`, `idKorisnika`) VALUES
 (9, 1);
 
@@ -59,7 +63,7 @@ INSERT INTO `knjiga` (`idK`, `idKorisnika`) VALUES
 
 DROP TABLE IF EXISTS `komentar`;
 CREATE TABLE IF NOT EXISTS `komentar` (
-  `idK` int(11) NOT NULL,
+  `idK` int(11) NOT NULL AUTO_INCREMENT,
   `idKorisnika` int(11) DEFAULT NULL,
   `sadrzaj` text,
   `idR` int(11) DEFAULT NULL,
@@ -67,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   PRIMARY KEY (`idK`),
   KEY `R_14` (`idKorisnika`),
   KEY `R_13` (`idR`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `komentar`
@@ -75,7 +79,9 @@ CREATE TABLE IF NOT EXISTS `komentar` (
 
 INSERT INTO `komentar` (`idK`, `idKorisnika`, `sadrzaj`, `idR`, `vreme`) VALUES
 (1, 1, 'cool', 1, '2018-05-12'),
-(2, 2, 'bolje', 1, '2018-05-02');
+(2, 2, 'bolje', 1, '2018-05-02'),
+(4, 1, 'extra', 2, '2018-06-06'),
+(5, 1, 'ssss', 2, '2018-06-06');
 
 -- --------------------------------------------------------
 
@@ -85,7 +91,7 @@ INSERT INTO `komentar` (`idK`, `idKorisnika`, `sadrzaj`, `idR`, `vreme`) VALUES
 
 DROP TABLE IF EXISTS `korisnik`;
 CREATE TABLE IF NOT EXISTS `korisnik` (
-  `idK` int(11) NOT NULL,
+  `idK` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `ime` varchar(20) DEFAULT NULL,
@@ -93,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `mail` varchar(30) DEFAULT NULL,
   `oznaka` char(1) NOT NULL,
   PRIMARY KEY (`idK`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `korisnik`
@@ -127,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `kuvar` (
 
 DROP TABLE IF EXISTS `meni`;
 CREATE TABLE IF NOT EXISTS `meni` (
-  `idM` int(11) NOT NULL,
+  `idM` int(11) NOT NULL AUTO_INCREMENT,
   `idK` int(11) DEFAULT NULL,
   `datum` date NOT NULL,
   PRIMARY KEY (`idM`),
@@ -155,11 +161,11 @@ CREATE TABLE IF NOT EXISTS `ocenjuje` (
 --
 
 INSERT INTO `ocenjuje` (`idK`, `idR`, `ocena`, `datum`) VALUES
-(1, 1, 5, '2018-05-15'),
+(1, 1, 2, '2018-06-06'),
 (2, 1, 1, '2018-05-14'),
 (3, 1, 2, '2018-05-20'),
 (4, 1, 4, '2018-05-17'),
-(1, 2, 2, '2018-06-12'),
+(1, 2, 3, '2018-06-06'),
 (1, 4, 5, '2018-06-14');
 
 -- --------------------------------------------------------
@@ -176,11 +182,15 @@ CREATE TABLE IF NOT EXISTS `omiljeni` (
   KEY `R_34` (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `omiljeni`
+--
 
 INSERT INTO `omiljeni` (`idS`, `idK`) VALUES
 (3, 1),
 (4, 1),
 (5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -189,7 +199,7 @@ INSERT INTO `omiljeni` (`idS`, `idK`) VALUES
 
 DROP TABLE IF EXISTS `recepti`;
 CREATE TABLE IF NOT EXISTS `recepti` (
-  `idR` int(11) NOT NULL,
+  `idR` int(11) NOT NULL AUTO_INCREMENT,
   `naziv` varchar(20) NOT NULL,
   `sadrzaj` text NOT NULL,
   `obrok` varchar(20) NOT NULL,
@@ -197,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `recepti` (
   `spec_prilika` varchar(20) DEFAULT NULL,
   `slika` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idR`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recepti`
@@ -236,7 +246,6 @@ CREATE TABLE IF NOT EXISTS `sastojci` (
   `opis` text,
   `kategorija` varchar(20) NOT NULL,
   PRIMARY KEY (`idS`)
-
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
@@ -278,10 +287,12 @@ CREATE TABLE IF NOT EXISTS `veza_recepti_knjiga` (
   KEY `R_30` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-INSERT INTO `veza_recepti_knjiga` (`idK`, `idR`) VALUES
-(9, 1),
-(9, 2);
+--
+-- Dumping data for table `veza_recepti_knjiga`
+--
 
+INSERT INTO `veza_recepti_knjiga` (`idK`, `idR`) VALUES
+(9, 2);
 
 -- --------------------------------------------------------
 
@@ -319,7 +330,7 @@ INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`, `kolicina`) VALUES
 
 DROP TABLE IF EXISTS `zahtev`;
 CREATE TABLE IF NOT EXISTS `zahtev` (
-  `idZ` int(11) NOT NULL,
+  `idZ` int(11) NOT NULL AUTO_INCREMENT,
   `idK` int(11) DEFAULT NULL,
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,

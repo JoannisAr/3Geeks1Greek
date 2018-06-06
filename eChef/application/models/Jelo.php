@@ -20,7 +20,7 @@ class Jelo extends CI_Model {
     }
 
     public function dohvatiJeloId($id) {
-        $this->db->select("idR,naziv,sadrzaj");
+        $this->db->select("idR,naziv,sadrzaj,slika");
         $this->db->from("recepti");
         $this->db->where("idR", $id);
         $query = $this->db->get();
@@ -36,9 +36,9 @@ class Jelo extends CI_Model {
         return $query->result();
     }
 
-    public function dohvatiJeloKategorija($kategorija) {
+    public function dohvatiJeloKategorija($obrok) {
         $this->db->select("idR,naziv,obrok,kategorija,spec_prilika");
-        $this->db->where('kategorija', $kategorija);
+        $this->db->where('obrok', $obrok);
         $query = $this->db->get('recepti');
         return $query->result();
     }
@@ -51,7 +51,10 @@ class Jelo extends CI_Model {
     }
 
     public function dohvatiJeloSastojak($sastojak) {
-        
+        $this->db->select("idR,naziv,obrok,kategorija,spec_prilika");
+        $this->db->where('kategorija', $sastojak);
+        $query = $this->db->get('recepti');
+        return $query->result();
     }
 
     public function dohvatiPodatkeJelo($id) {
@@ -242,10 +245,7 @@ class Jelo extends CI_Model {
     
     public function postaviJelo($naziv,$img,$sadrzaj,$obrok,$kategorija,$spec)
     {
-        
-       
-        
-        
+   
         $data = array
             (
                 'naziv' => $naziv,

@@ -12,9 +12,6 @@
  * @author Korisnik
  */
 class Admin  extends CI_Controller{
-    
-    
-    
      public function __construct() {
        
         
@@ -69,7 +66,15 @@ class Admin  extends CI_Controller{
         //poziva metodu prikazi za jela sto je dobio.
          // $this->prikazi("jelo stranica",array rezultata);
     }
-    
+     public function prikaziJelo($id){
+     $data=[];
+     $data['jelo']=$this->Jelo->dohvatiJeloId($id);
+     $data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
+     $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
+     $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
+       //$data = $this->Jelo->dohvatiPodatkeJelo($id);
+       $this->prikazi("recipe_demo.php",$data);
+    }
     
      public function prikazipretraga(){
         $data=[];
@@ -83,23 +88,24 @@ class Admin  extends CI_Controller{
     }
     
     
-      public function prikaziPrilika(){
-          
+     public function prikaziPrilika($prilika){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
     
-    public function prikaziPoSastojku(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to beef ili chicken ili lunch ili whatever
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
+    public function prikaziPoSastojku($sastojak){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloSastojak($sastojak);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
     
-     public function prikaziKategoriju(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to dorucak ili rucak ili sta god.
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
+     public function prikaziKategoriju($kategorija){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
+    
     public function logout(){
         // ubija sesiju
         //preusmeri na gosta.

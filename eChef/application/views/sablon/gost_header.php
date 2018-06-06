@@ -99,22 +99,22 @@
                                                 <span>Holiday Recipes</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="features-icons.html">Christmas</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPrilika/Christmas"); ?>">Christmas</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-icons-social.html">Easter</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPrilika/Easter"); ?>">Easter</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-icons-font-awesome.html">Dinner parties</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPrilika/Dinnerparties"); ?>">Dinner parties</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-icons-glyphicons.html">Valentines day</a>
+                                                        <a href="<?php echo site_url("Gost/prikaziPrilika/Valentinesday"); ?>">Valentines day</a>
                                                     </li>
-													<li>
-                                                        <a href="features-icons-glyphicons.html">Bqq</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("Gost/prikaziPrilika/Bqq"); ?>">Bqq</a>
                                                     </li>
-													<li>
-                                                        <a href="features-icons-glyphicons.html">Children's birthday party</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("Gost/prikaziPrilika/Childrenparty"); ?>">Children's birthday party</a>
                                                     </li>
                                                 </ul>
                                             </li>

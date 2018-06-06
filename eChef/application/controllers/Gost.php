@@ -18,7 +18,6 @@ class Gost extends CI_Controller {
           redirect("Korisnik");
           }
           } */
-        //$this->load->view(
     }
 
     //--pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
@@ -29,22 +28,12 @@ class Gost extends CI_Controller {
         $this->load->view("sablon/footer.php");
     }
 
-    //-- prikazuje index i u onaj slide bar u sredini  dohvata i stavlja 3
-    // naj popularnija recepata / najbolje ocenjena za sad recimo.
-    // IVANA
-    public function index() {
-        // dohvati ta 3 iz baze.
-        // $this->prikazi("home stranicu ", array('vesti'=>$vesti,'controller'=>"Gost") oblika
-        //                   
-        //                   
-        //                                                                                       ovog samo u podatke imamo 3 recepta);
+    public function index() {                                                                     
         $podaci = [];
         $this->prikazi("home.php", $podaci);
-        //$image = new Imagick();
     }
 
     //-- metoda koja se poziva prilikom pretrage  po nazivu itd itd.
-    // IVANA
     public function prikazipretraga() {
         $data = [];
         $this->prikazi("search.php", $data);
@@ -228,7 +217,7 @@ class Gost extends CI_Controller {
         $data['komentari'] = $this->Jelo->dohvatiKomentareJela($id);
         $data['ocene'] = $this->Jelo->dohvatiOceneJela($id);
         //$data = $this->Jelo->dohvatiPodatkeJelo($id);
-        $this->prikazi("recipe_demo.php", $data);
+        $this->prikazi("recipeGost.php", $data);
     }
 
     public function prikaziPrilika($prilika) {
@@ -248,5 +237,4 @@ class Gost extends CI_Controller {
         $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
         $this->prikazi("rezultatipretrage.php", $data);
     }
-
 }

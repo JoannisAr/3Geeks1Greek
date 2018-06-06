@@ -51,7 +51,6 @@ class Registrovani extends CI_Controller {
         $this->prikazi("search.php",$data);
     }
     
-    
     public function predloziJelo(){
      
         $jela=$this->Jelo->getOmiljenaJela($this->session->userdata('korisnik')->idK);
@@ -150,7 +149,7 @@ class Registrovani extends CI_Controller {
      public function prikaziJelo($id){
      $data=[];
      $data['jelo']=$this->Jelo->dohvatiJeloId($id);
-     $data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
+     //$data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
      $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
      $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
        //$data = $this->Jelo->dohvatiPodatkeJelo($id);

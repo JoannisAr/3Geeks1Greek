@@ -36,45 +36,45 @@
                                     </li>
                                     <li>
                                         <span class="fa-gears ">Recipes</span>
-                                        <ul>
+                                        <<ul>
                                             <li class="parent">
                                                 <span>Recipe Category</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="features-typo-basic.html">Lamb</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Lamb"); ?>">Lamb</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-typo-blockquotes.html">Turkey</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Turkey"); ?>">Turkey</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Chicken</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Chicken"); ?>">Chicken</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Beef</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Beef"); ?>">Beef</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Pork</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Pork"); ?>">Pork</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Fish</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Fish"); ?>">Fish</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Fruit</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Fruit"); ?>">Fruit</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Vegetables</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Vegetables"); ?>">Vegetables</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Seafood</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Seafood"); ?>">Seafood</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Pasta</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Pasta"); ?>">Pasta</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Rice, Risotto and Orzo</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Rice"); ?>">Rice, Risotto and Orzo</a>
                                                     </li>
-													<li>
-                                                        <a href="features-typo-blockquotes.html">Chocolate</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPoSastojku/Chocolate"); ?>">Chocolate</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -82,16 +82,16 @@
                                                 <span>Special Meals</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="features-labels.html">Breakfast</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziKategoriju/Breakfast"); ?>">Breakfast</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-progress-bars.html">Lunch</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziKategoriju/Lunch"); ?>">Lunch</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-panels.html">Dessert</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziKategoriju/Dessert"); ?>">Dessert</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-pagination.html">Dinner</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziKategoriju/Dinner"); ?>">Dinner</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -99,26 +99,25 @@
                                                 <span>Holiday Recipes</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="features-icons.html">Christmas</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Christmas"); ?>">Christmas</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-icons-social.html">Easter</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Easter"); ?>">Easter</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-icons-font-awesome.html">Dinner parties</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Dinnerparties"); ?>">Dinner parties</a>
                                                     </li>
                                                     <li>
-                                                        <a href="features-icons-glyphicons.html">Valentines day</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Valentinesday"); ?>">Valentines day</a>
                                                     </li>
-													<li>
-                                                        <a href="features-icons-glyphicons.html">Bqq</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Bqq"); ?>">Bqq</a>
                                                     </li>
-													<li>
-                                                        <a href="features-icons-glyphicons.html">Children's birthday party</a>
+                                                    <li>
+                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Childrenparty"); ?>">Children's birthday party</a>
                                                     </li>
                                                 </ul>
                                             </li>
-                                            
                                         </ul>
                                     </li>                                                           
 									<li>
@@ -134,7 +133,7 @@
                                         <a href="contact.html" class="fa-comment ">Contact</a>
                                     </li>
 									<li>
-                                        <a href="searchpage.html" ><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
+                                        <a href="<?php echo site_url("$controller/prikazipretraga"); ?>" ><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>
                                     </li>
                                 </ul>
                             </div>

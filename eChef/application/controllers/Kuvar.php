@@ -29,9 +29,16 @@ class Kuvar extends CI_Controller {
         $this->load->view("sablon/footer.php");
     }
 
-     public function pretraga(){
+    public function prikazipretraga(){
+        $data=[];
+        $this->prikazi("search.php",$data);
+    }
+    public function pretraga(){
         //uzme podatak 
-        $trazi=$this->input->get('pretraga');
+        $search = $this->input->get('searchBox');
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
+        $this->prikazi("rezultatipretrage.php",$data);
         // uradi pretragu 
         //poziva metodu prikazi za jela sto je dobio.
          // $this->prikazi("jelo stranica",array rezultata);
@@ -40,22 +47,25 @@ class Kuvar extends CI_Controller {
         $data=[];
         $this->prikazi("recipe-uploadx.php",$data);
     }
-      public function prikaziPrilika(){
+    
+    public function prikaziPrilika($prilika){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
     
-    public function prikaziPoSastojku(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to beef ili chicken ili lunch ili whatever
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
+    public function prikaziPoSastojku($sastojak){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloSastojak($sastojak);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
     
-     public function prikaziKategoriju(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to dorucak ili rucak ili sta god.
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
+     public function prikaziKategoriju($kategorija){
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
+        $this->prikazi("rezultatipretrage.php",$data);
     }
+    // ovde je stavio WEB/eChef/images/ ako je na www onda ovo menjati.
     public function postavitiRecept(){
         $uploaddir = '/WEB/eChef/images/';
         $uploadfile = $uploaddir . basename($_FILES['image']['name']);
