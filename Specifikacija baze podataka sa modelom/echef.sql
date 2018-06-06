@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 01, 2018 at 01:39 AM
--- Server version: 5.7.21
--- PHP Version: 5.6.35
+-- Generation Time: Jun 06, 2018 at 02:42 PM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,11 +34,6 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `admin`
---
-
-TRUNCATE TABLE `admin`;
 -- --------------------------------------------------------
 
 --
@@ -53,11 +48,6 @@ CREATE TABLE IF NOT EXISTS `knjiga` (
   KEY `R_15` (`idKorisnika`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `knjiga`
---
-
-TRUNCATE TABLE `knjiga`;
 -- --------------------------------------------------------
 
 --
@@ -76,11 +66,6 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   KEY `R_13` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `komentar`
---
-
-TRUNCATE TABLE `komentar`;
 --
 -- Dumping data for table `komentar`
 --
@@ -108,11 +93,6 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `korisnik`
---
-
-TRUNCATE TABLE `korisnik`;
---
 -- Dumping data for table `korisnik`
 --
 
@@ -135,11 +115,6 @@ CREATE TABLE IF NOT EXISTS `kuvar` (
   PRIMARY KEY (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `kuvar`
---
-
-TRUNCATE TABLE `kuvar`;
 -- --------------------------------------------------------
 
 --
@@ -155,11 +130,6 @@ CREATE TABLE IF NOT EXISTS `meni` (
   KEY `R_10` (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `meni`
---
-
-TRUNCATE TABLE `meni`;
 -- --------------------------------------------------------
 
 --
@@ -177,20 +147,16 @@ CREATE TABLE IF NOT EXISTS `ocenjuje` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `ocenjuje`
---
-
-TRUNCATE TABLE `ocenjuje`;
---
 -- Dumping data for table `ocenjuje`
 --
 
 INSERT INTO `ocenjuje` (`idK`, `idR`, `ocena`, `datum`) VALUES
-(1, 1, 3, '2018-05-15'),
+(1, 1, 5, '2018-05-15'),
 (2, 1, 1, '2018-05-14'),
 (3, 1, 2, '2018-05-20'),
 (4, 1, 4, '2018-05-17'),
-(1, 2, 2, '2018-06-12');
+(1, 2, 2, '2018-06-12'),
+(1, 4, 5, '2018-06-14');
 
 -- --------------------------------------------------------
 
@@ -207,10 +173,14 @@ CREATE TABLE IF NOT EXISTS `omiljeni` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `omiljeni`
+-- Dumping data for table `omiljeni`
 --
 
-TRUNCATE TABLE `omiljeni`;
+INSERT INTO `omiljeni` (`idS`, `idK`) VALUES
+(3, 1),
+(4, 1),
+(5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -229,11 +199,6 @@ CREATE TABLE IF NOT EXISTS `recepti` (
   PRIMARY KEY (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `recepti`
---
-
-TRUNCATE TABLE `recepti`;
 --
 -- Dumping data for table `recepti`
 --
@@ -258,11 +223,6 @@ CREATE TABLE IF NOT EXISTS `registrovani` (
   PRIMARY KEY (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `registrovani`
---
-
-TRUNCATE TABLE `registrovani`;
 -- --------------------------------------------------------
 
 --
@@ -271,25 +231,23 @@ TRUNCATE TABLE `registrovani`;
 
 DROP TABLE IF EXISTS `sastojci`;
 CREATE TABLE IF NOT EXISTS `sastojci` (
-  `idS` int(11) NOT NULL,
+  `idS` int(11) NOT NULL AUTO_INCREMENT,
   `naziv` varchar(20) NOT NULL,
   `opis` text,
   `kategorija` varchar(20) NOT NULL,
   PRIMARY KEY (`idS`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `sastojci`
---
-
-TRUNCATE TABLE `sastojci`;
 --
 -- Dumping data for table `sastojci`
 --
 
 INSERT INTO `sastojci` (`idS`, `naziv`, `opis`, `kategorija`) VALUES
 (1, 'makarone', 'testo mnogo goji', 'pasta'),
-(2, 'paradajz', 'crveno', 'povrce');
+(2, 'paradajz', 'crveno', 'povrce'),
+(3, 'potato', 'slano,zuto', 'povrce'),
+(4, 'pork', 'masno, bljuc', 'meso'),
+(5, 'chocolate', 'slatko', 'desert');
 
 -- --------------------------------------------------------
 
@@ -305,11 +263,6 @@ CREATE TABLE IF NOT EXISTS `veza_meni_recepti` (
   KEY `R_26` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `veza_meni_recepti`
---
-
-TRUNCATE TABLE `veza_meni_recepti`;
 -- --------------------------------------------------------
 
 --
@@ -324,11 +277,6 @@ CREATE TABLE IF NOT EXISTS `veza_recepti_knjiga` (
   KEY `R_30` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Truncate table before insert `veza_recepti_knjiga`
---
-
-TRUNCATE TABLE `veza_recepti_knjiga`;
 -- --------------------------------------------------------
 
 --
@@ -345,18 +293,17 @@ CREATE TABLE IF NOT EXISTS `veza_sastojci_recepti` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Truncate table before insert `veza_sastojci_recepti`
---
-
-TRUNCATE TABLE `veza_sastojci_recepti`;
---
 -- Dumping data for table `veza_sastojci_recepti`
 --
 
 INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`, `kolicina`) VALUES
 (1, 1, 3),
 (1, 2, 3),
-(2, 1, 5);
+(2, 1, 5),
+(1, 3, 4),
+(1, 4, 2),
+(1, 5, 4),
+(2, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -377,12 +324,7 @@ CREATE TABLE IF NOT EXISTS `zahtev` (
   PRIMARY KEY (`idZ`),
   KEY `R_4` (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Truncate table before insert `zahtev`
---
-
-TRUNCATE TABLE `zahtev`;COMMIT;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

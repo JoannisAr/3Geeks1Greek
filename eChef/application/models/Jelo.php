@@ -123,5 +123,75 @@ class Jelo extends CI_Model {
 
         $this->db->insert('omiljeni', $data);
     }
+    
+    public function getOmiljenaJela($idK){
+    
+        $this->db->select("sr.idR");
+        $this->db->from("veza_sastojci_recepti sr, omiljeni o");
+        $this->db->where("o.idK", $idK);
+        $this->db->where("o.idS = sr.idS");
+        $tmp = $this->db->get();
+        $query1= $tmp->result();
+        
+      //  $this->db->query('SELECT sr.idR FROM veza_sastojci_recepti UNION SELECT column_name(s) FROM table_name2');
+        
+       /* ob_flush();
+        ob_start();
+        var_dump(count($query1));
+        file_put_contents('dump.txt', ob_get_flush());*/
+        
+        $val=3;
+        
+        $this->db->select("o.idR");
+        $this->db->from("ocenjuje o");
+        $this->db->where("o.idK", $idK);
+        $this->db->where("o.ocena >", $val);
+        $tmp = $this->db->get();
+        $query2= $tmp->result();
+        
+       /* ob_flush();
+        ob_start();
+        var_dump(count($query2));
+        file_put_contents('dump.txt', ob_get_flush());*/
+        
+        $query = array_merge($query2, $query1);
+        return $query;
+        
+    }
+    
+    public function getJeloPoObroku($obrok){
+        
+        $this->db->select("idR");
+        $this->db->from("recepti");
+        $this->db->where("obrok", $obrok);
+        $tmp = $this->db->get();
+        $jela= $tmp->result();
+        
+        $size=count($jela);
+        $ind=mt_rand(0,$size-1);
+        
+        return $jela[$ind]->idR;
+    }
+    
+    public function getOmiljenoJelo($idK, $obrok){
+        
+        $this->db->select("sr.idR");
+        $this->db->from("veza_sastojci_recepti sr, omiljeni o, recepti r");
+        $this->db->where("o.idK", $idK);
+        $this->db->where("o.idS = sr.idS");
+        $this->db->where("sr.idR = r.idR");
+        $this->db->where("r.obrok", $obrok);
+        $tmp = $this->db->get();
+        $jela= $tmp->result();
+        
+        $size=count($jela);
+        if($size>0){
+             $ind=mt_rand(0,$size-1);
+            return $jela[$ind]->idR;
+        }
+        else{
+            return getJeloPoObroku($obrok);
+        }
+    }
 
 }
