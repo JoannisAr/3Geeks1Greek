@@ -11,27 +11,78 @@
  *
  * @author Korisnik
  */
-class Korisnik extends CI_Model{
-   /* private $ime;
-    private $prezime;
-    private $korisnicko_ime;
-    private $lozinka;
-    private tip/vrsta
- */ // nekaki ovakvi podaci..
+class Korisnik extends CI_Model {
+
+    public $ime;
+    public $prezime;
+    public $email;
+    public $username;
+    public $password;
+
+    // private $oznaka;
+
 
     public function __construct() {
         parent::__construct();
     }
-    
+    public function dohvatiKorisnika2($username) {
 
-    public function dohvatiKorisnika($korisnicko_ime){
-        $this->db->select("idK,username,password,ime,prezime,mail,oznaka");
+        $result = $this->db->where('username', $username)->get('korisnik');
+        $korisnik = $result->row();
+        return $korisnik;
+    }
+
+    //poziva se da se unesu osnovni podaci korisnika
+    public function unesiKorisnika($ime, $prezime, $email, $username, $password) {
+        $data = array(
+            'ime' => $ime ,
+            'prezime' => $prezime ,
+            'mail' => $email ,
+            'oznaka' => 'R' ,
+            'username' => $username ,
+            'password' => $password ,
+        );
+
+        $this->db->insert('korisnik', $data);
+    }
+
+    public function getId($username) {
+
+        $this->db->select("idK");
         $this->db->from("korisnik");
-        $this->db->where("username",$korisnicko_ime);
-        $query=$this->db->get();    
+        $this->db->where("username", $username);
+        $query = $this->db->get();
+        ob_flush();
+        ob_start();
+        var_dump($query->result());
+        file_put_contents('dump.txt', ob_get_flush());
         return $query->result();
     }
-    
+
+    //unosi sacuvane osnovne podatke o kuvaru u zahtev ukoliko je ceo sign-up prosao regularno
+    public function unesiZahtevKuvara($ime, $prezime, $email, $username, $password ,$cv) {
+        $data = array(
+            'ime' => $ime,
+            'prezime' => $prezime,
+            'mail' => $email,
+            'username' => $username,
+            'password' => $password,
+            'cv' => $cv
+        );
+
+        $this->db->insert('zahtev', $data);
+    }
+
+    public function unesiRegistrovanog($idK, $pol) {
+
+        $data = array(
+            'idK' => $idK,
+            'pol' => $pol
+        );
+
+        $this->db->insert('registrovani', $data);
+    }
+   
     public function dodajUKnjigu($id_korisnika,$id_jela){
         $query = $this->db->from("knjiga")->where("idKorisnika",$id_korisnika)->get();
         $knjiga = $query->row();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 05, 2018 at 01:39 PM
+-- Generation Time: Jun 06, 2018 at 02:42 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -47,10 +47,6 @@ CREATE TABLE IF NOT EXISTS `knjiga` (
   PRIMARY KEY (`idK`),
   KEY `R_15` (`idKorisnika`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `knjiga`
---
 
 INSERT INTO `knjiga` (`idK`, `idKorisnika`) VALUES
 (9, 1);
@@ -159,11 +155,12 @@ CREATE TABLE IF NOT EXISTS `ocenjuje` (
 --
 
 INSERT INTO `ocenjuje` (`idK`, `idR`, `ocena`, `datum`) VALUES
-(1, 1, 3, '2018-05-15'),
+(1, 1, 5, '2018-05-15'),
 (2, 1, 1, '2018-05-14'),
 (3, 1, 2, '2018-05-20'),
 (4, 1, 4, '2018-05-17'),
-(1, 2, 2, '2018-06-12');
+(1, 2, 2, '2018-06-12'),
+(1, 4, 5, '2018-06-14');
 
 -- --------------------------------------------------------
 
@@ -179,6 +176,11 @@ CREATE TABLE IF NOT EXISTS `omiljeni` (
   KEY `R_34` (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+
+INSERT INTO `omiljeni` (`idS`, `idK`) VALUES
+(3, 1),
+(4, 1),
+(5, 1);
 -- --------------------------------------------------------
 
 --
@@ -229,12 +231,13 @@ CREATE TABLE IF NOT EXISTS `registrovani` (
 
 DROP TABLE IF EXISTS `sastojci`;
 CREATE TABLE IF NOT EXISTS `sastojci` (
-  `idS` int(11) NOT NULL,
+  `idS` int(11) NOT NULL AUTO_INCREMENT,
   `naziv` varchar(20) NOT NULL,
   `opis` text,
   `kategorija` varchar(20) NOT NULL,
   PRIMARY KEY (`idS`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sastojci`
@@ -242,7 +245,10 @@ CREATE TABLE IF NOT EXISTS `sastojci` (
 
 INSERT INTO `sastojci` (`idS`, `naziv`, `opis`, `kategorija`) VALUES
 (1, 'makarone', 'testo mnogo goji', 'pasta'),
-(2, 'paradajz', 'crveno', 'povrce');
+(2, 'paradajz', 'crveno', 'povrce'),
+(3, 'potato', 'slano,zuto', 'povrce'),
+(4, 'pork', 'masno, bljuc', 'meso'),
+(5, 'chocolate', 'slatko', 'desert');
 
 -- --------------------------------------------------------
 
@@ -272,13 +278,10 @@ CREATE TABLE IF NOT EXISTS `veza_recepti_knjiga` (
   KEY `R_30` (`idR`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `veza_recepti_knjiga`
---
-
 INSERT INTO `veza_recepti_knjiga` (`idK`, `idR`) VALUES
 (9, 1),
 (9, 2);
+
 
 -- --------------------------------------------------------
 
@@ -302,7 +305,11 @@ CREATE TABLE IF NOT EXISTS `veza_sastojci_recepti` (
 INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`, `kolicina`) VALUES
 (1, 1, 3),
 (1, 2, 3),
-(2, 1, 5);
+(2, 1, 5),
+(1, 3, 4),
+(1, 4, 2),
+(1, 5, 4),
+(2, 3, 4);
 
 -- --------------------------------------------------------
 

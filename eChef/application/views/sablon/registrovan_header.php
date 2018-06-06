@@ -128,7 +128,7 @@
                                         <span class="fa-font ">User</span>
                                         <ul>
                                             <li>
-                                                <a href="blog-list.html">Suggest a meal</a>
+                                                <a href="<?php echo site_url("$controller/predloziJelo"); ?>">Suggest a meal</a>
                                             </li>
                                             <li>
                                                 <a href="blog-single.html">Weekly menu</a>

@@ -54,12 +54,29 @@ class Registrovani extends CI_Controller {
     
     public function predloziJelo(){
      
+        $jela=$this->Jelo->getOmiljenaJela($this->session->userdata('korisnik')->idK);
+        $size=count($jela);
+        $ind=mt_rand(0,$size-1);
+        
+        /*ob_flush();
+        ob_start();
+        var_dump($size);
+        file_put_contents('dump.txt', ob_get_flush());
+        
+        ob_flush();
+        ob_start();
+        var_dump($ind);
+        file_put_contents('dump.txt', ob_get_flush());
+        
+        ob_flush();
+        ob_start();
+        var_dump($jela[$ind]->idR);
+        file_put_contents('dump.txt', ob_get_flush());*/
+        
+        $this->prikaziJelo($jela[$ind]->idR);
         
     }    
-    // -- metoda koja ako nije ulogovan trazi loguj se ako jeste napravi mu meni ili ako ga vec ima prikaze. 
-    // ako vec ulogovan preusmeri u kontroler korisnik akcija predlozi jelo.
-	// CHEVU 
-    
+
     public function izradiPlanIshrane(){
         // proveri dal ima vec plan. 
         // ukoliko ima tj nije jos istekao

@@ -4,7 +4,11 @@
                     <div class="row margin-vert-30">
                         <!-- Register Box -->
                         <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-                            <form class="signup-page" method="post">
+                            <form class="signup-page" method="post" action="<?php echo site_url('Gost/registerKorisnik') ?>">
+                                
+                                <?php if(isset($poruka))
+					echo "<font color='red'>$poruka</font><br>";
+                                ?>
                                 <div class="signup-header">
                                     <h2>Register a new account</h2>
                                     <p>Already a member? Click
@@ -50,12 +54,12 @@
                                     </div>
                                     <div class="col-lg-4 text-right">
 										
-                                        <a href=<?php echo site_url('Gost/registerKorisnik'); ?>><button class="btn btn-primary" type="submit">Register as a client</button></a>
+                                        <button class="btn btn-primary" type="submit" name="client">Register as a client</button>
                                         
                                         <br>
                                         <br>
 										
-                                        <a href=<?php echo site_url('Gost/registerKuvar'); ?>><button class="btn btn-primary" type="submit">Register as a chef</button></a>
+                                        <button class="btn btn-primary" type="submit" name="chef">Register as a chef</button>
                                     </div>
                                 </div>
                             </form>
