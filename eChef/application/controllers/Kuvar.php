@@ -14,6 +14,8 @@
 class Kuvar extends CI_Controller {
     public function __construct() {
          parent::__construct();
+         
+         $this->load->model('Jelo');
     }
     public function index(){
        $podaci=[];
@@ -55,10 +57,28 @@ class Kuvar extends CI_Controller {
         // pozivajuci metodu prikazi sa array podatakama.
     }
     public function postavitiRecept(){
-        // ako nije logovan prikaz za logovanje 
-        // ako je ulogovan kao korisnik prikaz za logovanje uz poruku moras biti kuvar.
-        // ako je ulogovan kao kuvar preusmeri u istu metodu kod kuvara.
+        $uploaddir = '/WEB/eChef/images/';
+        $uploadfile = $uploaddir . basename($_FILES['image']['name']);
+        move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile);
+        
+        $naziv= $this->input->post('recipe_name');
+        $img="/images/" . $_FILES["image"]["name"];
+        $sadrzaj= $this->input->post('instructions');
+        $obrok= $this->input->post('specMeals[]');
+        $kategorija= $this->input->post('categories[]');
+        $spec=$this->input->post('holidayRecipe[]');
+        
+        $idR=$this->Jelo->postaviJelo($naziv,$img,$sadrzaj,$obrok,$kategorija,$spec);
+        
+        
+       // save_string_to_database("images/" . $_FILES["image"]["name"]);
+        
+
+
     }
+    
+    
+    
       public function knijga(){
      // proveri dal validan korisnik itd.
      // dohvati njegove knjige i prosledi u prikazi sa odgovar

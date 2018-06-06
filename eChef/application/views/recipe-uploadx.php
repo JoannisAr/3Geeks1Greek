@@ -3,7 +3,7 @@
         <div class="row margin-vert-30">
             <!-- Register Box -->
             <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-                <form class="upload recipe" action="<?php echo site_url('Kuvar/postavitiRecept');?> " method='post'>
+                <form class="upload recipe" action="<?php echo site_url('Kuvar/postavitiRecept');?> " method='post'  enctype="multipart/form-data">
                     <div class="neka-a">
                         <h2><b>Recipe upload</b></h2>
                     </div>
@@ -62,7 +62,7 @@
                         <input type="checkbox" name="chk_group3[]" value="nuts" />Nuts<br />
                     </div>
                     <label><b>Choose a recipe category:</b></label>
-                    <select class="form-control margin-bottom-20" required size="5" name="categories[]">
+                    <select class="form-control margin-bottom-20" required size="5" name="categories[]" >
                         <option value="lamb">Lamb</option>
                         <option value="turkey">Turkey</option>
                         <option value="chicken">Chicken</option>
@@ -77,7 +77,7 @@
                         <option value="chocolate">Chocolate</option>
                     </select>	
                     <label><b>Special meal :</b></label>
-                    <select class="form-control margin-bottom-20" required size="5" name="specMeals[]">
+                    <select class="form-control margin-bottom-20" required size="5" name="specMeals[]" >
                         <option value="Breakfast">Breakfast</option>
                         <option value="Lunch">Lunch</option>
                         <option value="Dessert">Dessert</option>

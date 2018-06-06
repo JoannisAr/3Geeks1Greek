@@ -139,4 +139,25 @@ class Jelo extends CI_Model{
         $this->db->delete('komentar', array('idK' => $idK)); 
     }
     
+    
+    public function postaviJelo($naziv,$img,$sadrzaj,$obrok,$kategorija,$spec)
+    {
+        
+       
+        
+        
+        $data = array
+            (
+                'naziv' => $naziv,
+                'slika' => $img ,
+                'sadrzaj' => $sadrzaj,
+                'obrok'=> $obrok[0],
+                'kategorija'=>$kategorija[0],
+                'spec_prilika'=>$spec[0]
+            );
+            
+            $this->db->insert('recepti', $data); 
+            return $this->db->insert_id();
+    }
+    
 }
