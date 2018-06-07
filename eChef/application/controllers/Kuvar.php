@@ -14,7 +14,7 @@
 class Kuvar extends CI_Controller {
     public function __construct() {
          parent::__construct();
-         
+         $this->load->model('Korisnik');
          $this->load->model('Jelo');
     }
     public function index(){
@@ -28,7 +28,15 @@ class Kuvar extends CI_Controller {
         $this->load->view($glavniDeo, $data);
         $this->load->view("sablon/footer.php");
     }
-
+    public function prikaziJelo($id){
+     $data=[];
+     $data['jelo']=$this->Jelo->dohvatiJeloId($id);
+     //$data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
+     $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
+     $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
+       //$data = $this->Jelo->dohvatiPodatkeJelo($id);
+       $this->prikazi("recipe_demo.php",$data);
+    }
     public function prikazipretraga(){
         $data=[];
         $this->prikazi("search.php",$data);
@@ -39,9 +47,6 @@ class Kuvar extends CI_Controller {
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
         $this->prikazi("rezultatipretrage.php",$data);
-        // uradi pretragu 
-        //poziva metodu prikazi za jela sto je dobio.
-         // $this->prikazi("jelo stranica",array rezultata);
     }
     public function prikaziDodavanjeRecepta(){
         $data=[];
@@ -66,7 +71,9 @@ class Kuvar extends CI_Controller {
         $this->prikazi("rezultatipretrage.php",$data);
     }
     // ovde je stavio WEB/eChef/images/ ako je na www onda ovo menjati.
-    public function postavitiRecept(){
+    public function postavitiRecept()
+    {
+        
         $uploaddir = '/WEB/eChef/images/';
         $uploadfile = $uploaddir . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile);
@@ -78,63 +85,52 @@ class Kuvar extends CI_Controller {
         $kategorija= $this->input->post('categories[]');
         $spec=$this->input->post('holidayRecipe[]');
         
-        $idR=$this->Jelo->postaviJelo($naziv,$img,$sadrzaj,$obrok,$kategorija,$spec);
+        $sastojci= $this->input->post('chk_group[]');
+        
+        $this->Jelo->postaviJelo($naziv,$img,$sadrzaj,$obrok,$kategorija,$spec,$sastojci);
         
         
-       // save_string_to_database("images/" . $_FILES["image"]["name"]);
+        redirect(site_url("Kuvar/index"));
+    }
+    
+   public function knjiga(){
+        $data = [];
+        $data['jela'] = $this->Korisnik->knjiga($this->session->userdata('korisnik')->idK);
+        $this->prikazi("book-2-column.php",$data);
+     }
+    public function dodajUKnjigu($id){
+       $this->Korisnik->dodajUKnjigu($this->session->userdata('korisnik')->idK,$id);
+       redirect(site_url("Kuvar/prikaziJelo/".$id));    
+     }
+    public function ukloniIzKnjige($id){
+        $this->Korisnik->ukloniIzKnjige($this->session->userdata('korisnik')->idK,$id);
+        redirect(site_url("Kuvar/prikaziJelo/".$id)); 
+    }
+       public function oceni($idK,$ocena,$idR)
+    {
+        $this->Jelo->dodajOcenu($idK,$ocena,$idR);
+       redirect(site_url("Kuvar/prikaziJelo/".$idR));
+    }
+    public function dodajKomentar()
+    { 
+        $data = array
+        (
+            'idKorisnika'=> $this->session->userdata('korisnik')->idK,
+            'sadrzaj' => $this->input->get('comment'),
+            'idR' => $this->input->get('idr')
+        );
         
-
-
+        $this->Jelo->dodajKomentar($data);
+        redirect(site_url("Kuvar/prikaziJelo/".$data['idR']));
     }
     
-    
-    
-      public function knijga(){
-     // proveri dal validan korisnik itd.
-     // dohvati njegove knjige i prosledi u prikazi sa odgovar
-     //jucom stranicom.
-    }
-      public function dodajUKnjigu(){
-        //proveri dal logovan itd.
-        //proveri dal ima vec u knjigu
-        // dodaj mu i nista nek ostane na tu stranicu
-    }
-    public function ukloniIzKnjige(){
-        // proveri dal logovan itd.
-        //proveri dal ima vec u knjigu
-        // ukloni 
-    }
-     public function dodajOcenu(){
-        //gleda dal logovan itd.
-        // oceni z
-        // prikazi opet to jelo.
-        // znaci pozove prikazi
-    }
-    
-    public function ukloniOcenu(){
-        //gleda dal logovan itd
-        // gledaj dal je ocenjivo do sad.
-        // ukloni ocenu
-        // prikaze opet to jelo
-        //znaci pozove prikazi.
-    }
-    
-    public function dodajKomentar(){
-        //gleda dal logovan itd.
-        // doda komentar
-        // prikazi opet to jelo.
-        // znaci pozove prikazi
-    }
-    
-    public function ukloniKomentar(){
-        //gleda dal logovan itd
-        // gledaj dal je komentariso do sad.
-        // ukloni ocenu
-        // prikaze opet to jelo
-        //znaci pozove prikazi.         
+    public function ukloniKomentar($idK,$idR){
+        $this->Jelo->ukloniKomentar($idK);
+        redirect(site_url("Kuvar/prikaziJelo/".$idR));
     }
     public function logout(){
-        // ubija sesiju
-        //preusmeri na gosta.
+        $this->session->unset_userdata("korisnik");// brise se podatak o autoru iz sesije
+        $this->session->sess_destroy(); //brise se sesija
+        redirect("Gost");//kako vise nije ulogovan, treba da se ponasa kao sto je definisano u kontroleru gost
     }
 }

@@ -13,35 +13,20 @@
  */
 class Admin  extends CI_Controller{
      public function __construct() {
-       
-        
-       /*(session_start();
-        if(!isset($_SESSION['korisnik'])
-        * header("Location:?controller=Gost&akcija=index");
-        * else if(isset($_SESSION[kuvar]== 1)
-        *header("Location:?controller=Kuvar&akcija=index");
-         else if(isset($_SESSION[admin]== 1)
-        *   header("Location:?controller=Admin&akcija=index");
-         */
-		 
-		   parent::__construct();
-                   
-                   
-                   
-                   $this->load->model('Jelo');
+         parent::__construct();
+          $this->load->model('Jelo');
           if (($this->session->userdata('korisnik')) == NULL) {
             redirect("Gost");
           }
-          if ($this->session->userdata('korisnik')->oznaka == 'a') {
-            redirect("Admin");
+          if ($this->session->userdata('korisnik')->oznaka == 'R') {
+            redirect("Registrovani");
           }
-          if ($this->session->userdata('korisnik')->oznaka == 'k'){
+          if ($this->session->userdata('korisnik')->oznaka == 'K'){
                  redirect("Kuvar");
           }
 		 
     }
   
-    
      private function prikazi($glavniDeo, $data){
        
         $data['controller']='Registrovani';
@@ -49,13 +34,10 @@ class Admin  extends CI_Controller{
         $this->load->view($glavniDeo, $data);
         $this->load->view("sablon/footer.php");
     }
-    
-    
     public function index(){
        $podaci=[];
        $this->prikazi("home.php",$podaci);
     }
-    
     public function pretraga(){
         //uzme podatak 
         $search = $this->input->get('searchBox');
@@ -84,10 +66,8 @@ class Admin  extends CI_Controller{
     
      public function ukloniKomentar($idK,$idR){
         $this->Jelo->ukloniKomentar($idK);
-        $this->prikaziJelo($idR);
+         redirect(site_url("Admin/prikaziJelo/".$idR));
     }
-    
-    
      public function prikaziPrilika($prilika){
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
@@ -105,14 +85,13 @@ class Admin  extends CI_Controller{
         $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
         $this->prikazi("rezultatipretrage.php",$data);
     }
-    
-    public function logout(){
-        // ubija sesiju
-        //preusmeri na gosta.
+   public function logout(){
+        $this->session->unset_userdata("korisnik");// brise se podatak o autoru iz sesije
+        $this->session->sess_destroy(); //brise se sesija
+        redirect("Gost");//kako vise nije ulogovan, treba da se ponasa kao sto je definisano u kontroleru gost
     }
     public function odobriKuvara(){
         
     
-    }
-    
+    } 
 }

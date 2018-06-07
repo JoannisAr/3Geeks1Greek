@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 06, 2018 at 05:54 PM
+-- Generation Time: Jun 07, 2018 at 01:06 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -46,14 +46,15 @@ CREATE TABLE IF NOT EXISTS `knjiga` (
   `idKorisnika` int(11) DEFAULT NULL,
   PRIMARY KEY (`idK`),
   KEY `R_15` (`idKorisnika`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `knjiga`
 --
 
 INSERT INTO `knjiga` (`idK`, `idKorisnika`) VALUES
-(9, 1);
+(12, 1),
+(10, 6);
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,7 @@ INSERT INTO `ocenjuje` (`idK`, `idR`, `ocena`, `datum`) VALUES
 (2, 1, 1, '2018-05-14'),
 (3, 1, 2, '2018-05-20'),
 (4, 1, 4, '2018-05-17'),
-(1, 2, 3, '2018-06-06'),
+(1, 2, 1, '2018-06-07'),
 (1, 4, 5, '2018-06-14');
 
 -- --------------------------------------------------------
@@ -207,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `recepti` (
   `spec_prilika` varchar(20) DEFAULT NULL,
   `slika` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`idR`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recepti`
@@ -215,9 +216,10 @@ CREATE TABLE IF NOT EXISTS `recepti` (
 
 INSERT INTO `recepti` (`idR`, `naziv`, `sadrzaj`, `obrok`, `kategorija`, `spec_prilika`, `slika`) VALUES
 (2, 'pizza', '1)sir\r\n2)paradajz\r\n3)kecap\r\n4)sunka', 'vecera', 'Pasta', 'Christmas', '/images/pizza.jpg'),
-(3, 'torta', 'ima secera', 'rucak', 'Chocolate', 'valentines day', NULL),
-(4, 'keks', 'ima brasna', 'vecera', 'Chocolate', 'valentines day', NULL),
-(1, 'pasta', 'ma ima razno sta sad da ti pisem', 'rucak', 'neka', 'neka', '/images/pasta.jpg');
+(3, 'torta', 'ima secera', 'Dinner', 'Chocolate', 'valentines day', '/images/pasta.jpg'),
+(4, 'keks', 'ima brasna', 'Breakfast', 'Chocolate', 'valentines day', '/images/pasta.jpg'),
+(1, 'pasta', 'ma ima razno sta sad da ti pisem', 'Lunch', 'neka', 'neka', '/images/pasta.jpg'),
+(5, 'nesto', 'passa ovako pa onkao akaksoda\r\nasdkaskdaks\r\nasdkaskdas\r\nlasdlasld\r\nasaldas\r\ndasld\r\nasdlas\r\ndasld\r\naslda\r\nsd;as;da;sdasd\r\n\r\nasldalsd\r\nas\r\n', 'Dessert', 'turkey', 'Valentines Day', '/images/pasta.jpg');
 
 -- --------------------------------------------------------
 
@@ -228,7 +230,6 @@ INSERT INTO `recepti` (`idR`, `naziv`, `sadrzaj`, `obrok`, `kategorija`, `spec_p
 DROP TABLE IF EXISTS `registrovani`;
 CREATE TABLE IF NOT EXISTS `registrovani` (
   `idK` int(11) NOT NULL,
-  `godine` int(11) NOT NULL,
   `pol` char(1) NOT NULL,
   PRIMARY KEY (`idK`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -255,9 +256,9 @@ CREATE TABLE IF NOT EXISTS `sastojci` (
 INSERT INTO `sastojci` (`idS`, `naziv`, `opis`, `kategorija`) VALUES
 (1, 'makarone', 'testo mnogo goji', 'pasta'),
 (2, 'paradajz', 'crveno', 'povrce'),
-(3, 'potato', 'slano,zuto', 'povrce'),
-(4, 'pork', 'masno, bljuc', 'meso'),
-(5, 'chocolate', 'slatko', 'desert');
+(3, 'Potato', 'slano,zuto', 'povrce'),
+(4, 'Pork', 'masno, bljuc', 'meso'),
+(5, 'Chocolate', 'slatko', 'desert');
 
 -- --------------------------------------------------------
 
@@ -292,7 +293,9 @@ CREATE TABLE IF NOT EXISTS `veza_recepti_knjiga` (
 --
 
 INSERT INTO `veza_recepti_knjiga` (`idK`, `idR`) VALUES
-(9, 2);
+(9, 2),
+(10, 2),
+(11, 2);
 
 -- --------------------------------------------------------
 
@@ -304,7 +307,6 @@ DROP TABLE IF EXISTS `veza_sastojci_recepti`;
 CREATE TABLE IF NOT EXISTS `veza_sastojci_recepti` (
   `idR` int(11) NOT NULL,
   `idS` int(11) NOT NULL,
-  `kolicina` int(11) NOT NULL,
   PRIMARY KEY (`idR`,`idS`),
   KEY `R_27` (`idS`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -313,14 +315,17 @@ CREATE TABLE IF NOT EXISTS `veza_sastojci_recepti` (
 -- Dumping data for table `veza_sastojci_recepti`
 --
 
-INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`, `kolicina`) VALUES
-(1, 1, 3),
-(1, 2, 3),
-(2, 1, 5),
-(1, 3, 4),
-(1, 4, 2),
-(1, 5, 4),
-(2, 3, 4);
+INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(2, 1),
+(2, 3),
+(5, 3),
+(5, 4),
+(5, 5);
 
 -- --------------------------------------------------------
 
@@ -331,15 +336,13 @@ INSERT INTO `veza_sastojci_recepti` (`idR`, `idS`, `kolicina`) VALUES
 DROP TABLE IF EXISTS `zahtev`;
 CREATE TABLE IF NOT EXISTS `zahtev` (
   `idZ` int(11) NOT NULL AUTO_INCREMENT,
-  `idK` int(11) DEFAULT NULL,
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
   `cv` blob,
   `ime` varchar(20) DEFAULT NULL,
   `prezime` varchar(20) DEFAULT NULL,
   `mail` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`idZ`),
-  KEY `R_4` (`idK`)
+  PRIMARY KEY (`idZ`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 

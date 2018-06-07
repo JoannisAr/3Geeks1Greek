@@ -114,7 +114,7 @@
                                                         <a href="<?php echo site_url("$controller/prikaziPrilika/Bqq"); ?>">Bqq</a>
                                                     </li>
                                                     <li>
-                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Childrenparty"); ?>">Children's birthday party</a>
+                                                        <a href="<?php echo site_url("$controller/prikaziPrilika/Children's birthday party"); ?>">Children's birthday party</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -130,7 +130,7 @@
                                                 <a href="<?php echo site_url("$controller/predloziJelo"); ?>">Suggest a meal</a>
                                             </li>
                                             <li>
-                                                <a href="blog-single.html">Weekly menu</a>
+                                                <a href="<?php echo site_url("$controller/izradiPlanIshrane");?>">Weekly menu</a>
                                             </li>										
                                         </ul>
                                     </li>

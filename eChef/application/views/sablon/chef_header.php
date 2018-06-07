@@ -121,7 +121,7 @@
                                         </ul>
                                     </li>                                                           
 									<li>
-                                        <a href="contact.html" class="fa-comment ">Book</a>
+                                        <a href="<?php echo site_url("$controller/knjiga"); ?>" class="fa-comment ">Book</a>
                                     </li>
                                    <li>
                                         <a href="<?php echo site_url("$controller/prikaziDodavanjeRecepta");?>" class="fa-comment ">Upload Recipie</a>

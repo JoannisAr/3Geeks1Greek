@@ -27,41 +27,41 @@
                     <select class="form-control margin-bottom-20" multiple size="5" name="veggie[]" required>
   
 
-                        <option value="potato">Potato</option>
-                        <option value="onion">Onion</option>
-                        <option value="pepper">Pepper</option>
+                        <option value="Potato">Potato</option>
+                        <option value="Onion">Onion</option>
+                        <option value="Pepper">Pepper</option>
                         <option value="carrot">Carrot</option>
 
-                        <option value="peas">Peas</option>
-                        <option value="broccoli">Broccoli</option>
-			                  <option value="avocado">Avocado</option>
+                        <option value="Peas">Peas</option>
+                        <option value="Broccoli">Broccoli</option>
+			<option value="Avocado">Avocado</option>
 
-                        <option value="corn">Corn</option>
-                        <option value="tomato">Tomato</option>
-                        <option value="beetroot">Beetroot</option>
-                        <option value="pumpkin">Pumpkin</option>
-                        <option value="apple">Apple</option>
-                        <option value="pear">Pear</option>
+                        <option value="Corn">Corn</option>
+                        <option value="Tomato">Tomato</option>
+                        <option value="Beetroot">Beetroot</option>
+                        <option value="Pumpkin">Pumpkin</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Pear">Pear</option>
 
-                        <option value="strawberry">Strawberry</option>
-                        <option value="pineapple">Pineapple</option>
-                        <option value="orange">Orange</option>
+                        <option value="Strawberry">Strawberry</option>
+                        <option value="Pineapple">Pineapple</option>
+                        <option value="Orange">Orange</option>
                     </select>
                     <label>Meats</label>
 
                     <select class="form-control margin-bottom-20" multiple size="5" name="meat[]" required>
-                        <option value="lamb">Lamb</option>
-                        <option value="pork">Pork</option>
-                        <option value="chicken">Chicken</option>
-                        <option value="fish">Fish</option>
-                        <option value="seafood">Seafood</option>
+                        <option value="Lamb">Lamb</option>
+                        <option value="Pork">Pork</option>
+                        <option value="Chicken">Chicken</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Seafood">Seafood</option>
                     </select>
 
                 </label>Dessert flavours<label>
                 <select class="form-control margin-bottom-20" multiple size="5" name="ukusi[]" required>
-                    <option value="chocolate">Chocolate</option>
-                    <option value="vanilla">Vanilla</option>
-                    <option value="caramel">Caramel</option>
+                    <option value="Chocolate">Chocolate</option>
+                    <option value="Vanilla">Vanilla</option>
+                    <option value="Caramel">Caramel</option>
 
 
                 </select>
@@ -83,10 +83,10 @@
                     <div class="col-sm-6">
                     </label>Allergies<label>
                     <select class="form-control margin-bottom-20" multiple size="3" name="alergije[]">
-                        <option value="milk">Milk</option>
-                        <option value="peanut">Peanut</option>
-                        <option value="hazelnut">Hazelnut</option>
-                        <option value="soy">Soy</option>
+                        <option value="Milk">Milk</option>
+                        <option value="Peanut">Peanut</option>
+                        <option value="Hazelnut">Hazelnut</option>
+                        <option value="Soy">Soy</option>
 
                     </select>
                      </div>

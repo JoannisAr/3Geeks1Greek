@@ -77,11 +77,14 @@ class Registrovani extends CI_Controller {
     }    
 
     public function izradiPlanIshrane(){
-        // proveri dal ima vec plan. 
-        // ukoliko ima tj nije jos istekao
-        // onda pozove prikaz njegov
-        // ukoliko nema generisi jela pa prikazi
-        // sa odgovarajucim prikazom i podacima
+       $data=[];
+       $data['jela']=[];
+       
+       
+       $data['jela'][0] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Breakfast"))[0];
+       $data['jela'][1] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Lunch"))[0];
+       $data['jela'][2] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Dinner"))[0];
+       $this->prikazi("menu.php",$data);
     }
     
      public function knjiga(){
@@ -95,16 +98,6 @@ class Registrovani extends CI_Controller {
         $this->Jelo->dodajOcenu($idK,$ocena,$idR);
        redirect(site_url("Registrovani/prikaziJelo/".$idR));
     }
-    
-    public function ukloniOcenu(){
-        //gleda dal logovan itd
-        // gledaj dal je ocenjivo do sad.
-        // ukloni ocenu
-        // prikaze opet to jelo
-        //znaci pozove prikazi.
-    }
-    
-    
     public function dodajKomentar()
     { 
         $data = array
@@ -140,12 +133,11 @@ class Registrovani extends CI_Controller {
     }
     
     public function logout(){
-        // ubija sesiju
-        //preusmeri na gosta.
+        $this->session->unset_userdata("korisnik");// brise se podatak o autoru iz sesije
+        $this->session->sess_destroy(); //brise se sesija
+        redirect("Gost");//kako vise nije ulogovan, treba da se ponasa kao sto je definisano u kontroleru gost
     }
-    
-    
-    
+
      public function prikaziJelo($id){
      $data=[];
      $data['jelo']=$this->Jelo->dohvatiJeloId($id);
