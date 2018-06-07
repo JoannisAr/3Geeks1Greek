@@ -11,44 +11,84 @@
  *
  * @author Korisnik
  */
-class Admin {
-   public function pretraga(){
-        //uzme podatak 
-        $trazi=$this->input->get('pretraga');
-        // uradi pretragu 
-        //poziva metodu prikazi za jela sto je dobio.
-         // $this->prikazi("jelo stranica",array rezultata);
+class Admin extends CI_Controller {
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->model("Zahtev");
+        $this->load->model("Korisnik");
+        $this->load->model("Kuvar");
+        //$this->load->library('session');
     }
-      public function prikaziPrilika(){
-          
+
+    private function prikazi($glavniDeo, $data) {
+        //$podaci['autor']=$this->session->userdata('autor');
+        //$data[controller] = 'admin';
+        $this->load->view("sablon/admin_header.php", $data);
+        $this->load->view($glavniDeo, $data);
+        $this->load->view("sablon/footer.php");
     }
+
+    public function index() {
+        $data['zahtevi'] = $this->Zahtev->dohvatiZahteve();
+        $this->prikazi("requirements.php", $data);
+    }
+
+    public function pretraga() {
+
+        $search = $this->input->get('searchBox');
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
+        $this->prikazi("rezultatipretrage.php", $data);
+    }
+
+    public function prikaziPrilika($prilika) {
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
+        $this->prikazi("rezultatipretrage.php", $data);
+    }
+
+    public function prikaziPoSastojku($sastojak) {
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloSastojak($sastojak);
+        $this->prikazi("rezultatipretrage.php", $data);
+    }
+
+    public function prikaziKategoriju($kategorija) {
+        $data = [];
+        $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
+        $this->prikazi("rezultatipretrage.php", $data);
+    }
+
+    public function logout() {
+        $this->session->unset_userdata("korisnik");
+        $this->session->sess_destroy();
+        redirect("Gost");
+    }
+
+    public function odobriZahtev($id) {
+        $this->Zahtev->odobriZahtev($id);
+        redirect("Admin/index");
+    }
+
+    public function odbijZahtev($id) {
+        $this->Zahtev->odbijZahtev($id);
+        redirect("Admin/index");
+    }
+
     
-    public function prikaziPoSastojku(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to beef ili chicken ili lunch ili whatever
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
-    }
     
-     public function prikaziKategoriju(){
-        // uzme podatak preko geta sto se setovo kad je klikno dal 
-        // je to dorucak ili rucak ili sta god.
-        // vrsi pretragu  i ispisuje.. 
-        // pozivajuci metodu prikazi sa array podatakama.
+    public function sacuvajCV($id){
+        $z= $this->Zahtev->dohvatiZahtev($id);
+        echo $z[0]->cv;
+        header("Content-Disposition: attachment; filename='cv'");
     }
-    public function logout(){
-        // ubija sesiju
-        //preusmeri na gosta.
-    }
-    public function odobriKuvara(){
-        
-    
-    }
-    public function ukloniKomentar(){
+    public function ukloniKomentar() {
         //gleda dal logovan itd
         // gledaj dal je komentariso do sad.
         // ukloni ocenu
         // prikaze opet to jelo
         //znaci pozove prikazi.         
     }
+
 }
