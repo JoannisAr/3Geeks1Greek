@@ -5,7 +5,7 @@
                
                 <h2>BOOK</h2>
                  <?php 
-                 if (!isset($jela))
+                 if (!isset($jela)|| $jela ==NULL)
                      echo "Your book is empty";
                      ?>
             </div>

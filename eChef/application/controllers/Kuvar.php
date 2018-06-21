@@ -31,11 +31,9 @@ class Kuvar extends CI_Controller {
     public function prikaziJelo($id){
      $data=[];
      $data['jelo']=$this->Jelo->dohvatiJeloId($id);
-     //$data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
      $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
      $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
-       //$data = $this->Jelo->dohvatiPodatkeJelo($id);
-       $this->prikazi("recipe_demo.php",$data);
+     $this->prikazi("recipe_demo.php",$data);
     }
     public function prikazipretraga(){
         $data=[];

@@ -223,13 +223,11 @@ class Gost extends CI_Controller {
 	//vrsi prikaz jela sa zadatim $id
 
     public function prikaziJelo($id) {
-        $data = [];
-        $data['jelo'] = $this->Jelo->dohvatiJeloId($id);
-        $data['sastojci'] = $this->Jelo->dohvatiSastojkeJela($id);
-        $data['komentari'] = $this->Jelo->dohvatiKomentareJela($id);
-        $data['ocene'] = $this->Jelo->dohvatiOceneJela($id);
-        //$data = $this->Jelo->dohvatiPodatkeJelo($id);
-        $this->prikazi("recipeGost.php", $data);
+     $data=[];
+     $data['jelo']=$this->Jelo->dohvatiJeloId($id);
+     $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
+     $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
+     $this->prikazi("recipeGost.php", $data);
     }
 	
 	

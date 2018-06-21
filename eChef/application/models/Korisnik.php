@@ -45,7 +45,12 @@ class Korisnik extends CI_Model {
 
         $this->db->insert('korisnik', $data);
     }
-
+    public function imaMeni($id){
+        $this->db->select("idM");
+        $this->db->from("meni");
+        $this->db->where("idK",$id);
+        
+    }
     public function getId($username) {
 
         $this->db->select("idK");

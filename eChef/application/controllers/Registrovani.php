@@ -40,9 +40,6 @@ class Registrovani extends CI_Controller {
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
         $this->prikazi("rezultatipretrage.php",$data);
-        // uradi pretragu 
-        //poziva metodu prikazi za jela sto je dobio.
-         // $this->prikazi("jelo stranica",array rezultata);
     }
     
     
@@ -58,22 +55,6 @@ class Registrovani extends CI_Controller {
         $jela=$this->Jelo->getOmiljenaJela($this->session->userdata('korisnik')->idK);
         $size=count($jela);
         $ind=mt_rand(0,$size-1);
-        
-        /*ob_flush();
-        ob_start();
-        var_dump($size);
-        file_put_contents('dump.txt', ob_get_flush());
-        
-        ob_flush();
-        ob_start();
-        var_dump($ind);
-        file_put_contents('dump.txt', ob_get_flush());
-        
-        ob_flush();
-        ob_start();
-        var_dump($jela[$ind]->idR);
-        file_put_contents('dump.txt', ob_get_flush());*/
-        
         $this->prikaziJelo($jela[$ind]->idR);
         
     }    
@@ -83,11 +64,9 @@ class Registrovani extends CI_Controller {
     public function izradiPlanIshrane(){
        $data=[];
        $data['jela']=[];
-       
-       
-       $data['jela'][0] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Breakfast"))[0];
-       $data['jela'][1] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Lunch"))[0];
-       $data['jela'][2] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Dinner"))[0];
+        $data['jela'][0] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Breakfast"))[0];
+        $data['jela'][1] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Lunch"))[0];
+        $data['jela'][2] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Dinner"))[0];
        $this->prikazi("menu.php",$data);
     }
     
@@ -155,11 +134,9 @@ class Registrovani extends CI_Controller {
      public function prikaziJelo($id){
      $data=[];
      $data['jelo']=$this->Jelo->dohvatiJeloId($id);
-     //$data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
      $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
      $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
-       //$data = $this->Jelo->dohvatiPodatkeJelo($id);
-       $this->prikazi("recipe_demo.php",$data);
+     $this->prikazi("recipe_demo.php",$data);
     }
     public function prikaziPrilika($prilika){
         $data = [];

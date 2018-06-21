@@ -46,18 +46,13 @@ class Admin  extends CI_Controller{
         $search = $this->input->get('searchBox');
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloIme($search);
-        $this->prikazi("rezultatipretrage.php",$data);
-        // uradi pretragu 
-        //poziva metodu prikazi za jela sto je dobio.
-         // $this->prikazi("jelo stranica",array rezultata);
+        $this->prikazi("rezultatipretrage.php",$data);      
     }
      public function prikaziJelo($id){
      $data=[];
      $data['jelo']=$this->Jelo->dohvatiJeloId($id);
-     $data['sastojci']= $this->Jelo->dohvatiSastojkeJela($id);
      $data['komentari']= $this->Jelo->dohvatiKomentareJela($id);
      $data['ocene']= $this->Jelo->dohvatiOceneJela($id);
-       //$data = $this->Jelo->dohvatiPodatkeJelo($id);
        $this->prikazi("recipe_demo.php",$data);
     }
     

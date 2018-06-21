@@ -33,7 +33,7 @@
                             <div class="visible-lg">
                                 <ul id="hornavmenu" class="nav navbar-nav">
                                     <li>
-                                        <a href="home.html" class="fa-home active">Home</a>
+                                      <a href="<?php echo site_url("Registrovani/index");?>" class="fa-home active">Home</a>
                                     </li>
                                     <li>
                                         <span class="fa-gears ">Recipes</span>

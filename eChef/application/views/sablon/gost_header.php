@@ -32,7 +32,7 @@
                             <div class="visible-lg">
                                 <ul id="hornavmenu" class="nav navbar-nav">
                                     <li>
-                                        <a href="home.html" class="fa-home active">Home</a>
+                                        <a href="<?php echo site_url("Gost/index");?>" class="fa-home active">Home</a>
                                     </li>
                                     <li>
                                         <span class="fa-gears ">Recipes</span>
@@ -135,7 +135,7 @@
                                         </ul>
                                     </li>                                                             
                                     <li>
-                                        <a href="contact.html" class="fa-comment ">Contact</a>
+                                        <a href="#base" class="fa-comment ">Contact</a>
                                     </li>
 				    <li>
                                         
