@@ -84,14 +84,25 @@ class Registrovani extends CI_Controller {
 
 	//funkcija vrsi odabir 3 jela na osnovu ukusa konkretnog korisnika
 	//i prikazuje ih na posebnom view-u za meni
-    public function izradiPlanIshrane(){
+   /* public function izradiPlanIshrane(){
        $data=[];
        $data['jela']=[];
         $data['jela'][0] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Breakfast"))[0];
         $data['jela'][1] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Lunch"))[0];
         $data['jela'][2] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Dinner"))[0];
        $this->prikazi("menu.php",$data);
+    }*/
+    public function izradiPlanIshrane(){
+       $data=[];
+       
+       $data['jela']=[];
+       
+       $data=$this->Korisnik->izradiMeni($data);
+      
+       $this->prikazi("menu.php",$data);
     }
+
+    
     
 	//funkcija vrsi prikaz knjige konkrentog korisnika
      public function knjiga(){

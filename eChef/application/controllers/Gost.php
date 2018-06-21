@@ -199,10 +199,14 @@ class Gost extends CI_Controller {
         }
         
         //ako su unete alergije
-        if (!isset($_POST['alergije'])) {
+        if (isset($_POST['alergije'])) {
             foreach ($this->input->post('alergije') as $al) {
                 $idS = $this->Jelo->getIdSastojka($al)[0]->idS;
                 $this->Jelo->unesiAlergiju($idK, $idS);
+              ob_flush();
+              ob_start();
+              var_dump($idS);
+              file_put_contents('dump.txt', ob_get_flush());
             }
         }
         

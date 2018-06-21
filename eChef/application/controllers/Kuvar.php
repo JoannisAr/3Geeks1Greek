@@ -72,19 +72,9 @@ class Kuvar extends CI_Controller {
     //funkcija koja dodaje novi recept u bazu 
     public function postavitiRecept() {
         $data = [];
-        if (!isset($_POST['chk_group'])) {
-            $data['poruka'] = "Morate uneti sastojke";
-            $this->prikazi("recepie-uploadx.php", $data);
-        }/*
-        if (!isset($_POST['categories'])) {
-            $data['poruka'] = "Morate uneti kategoriju jela";
-            $this->prikazi("recepie-uploadx.php", $data);
+        if (!isset($_POST['chk_group[]'])) {
+            $data['poruka'] = "Morate uneti sastojke";         
         }
-        if (!isset($_POST['specMeals'])) {
-            $data['poruka'] = "Morate uneti tip obroka";
-            $this->prikazi("recepie-uploadx.php", $data);
-        }*/
-
         $uploaddir = '/WEB/eChef/images/';
         $uploadfile = $uploaddir . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile);
@@ -94,7 +84,7 @@ class Kuvar extends CI_Controller {
         $sadrzaj = $this->input->post('instructions');
         $obrok = $this->input->post('specMeals[]');
         $kategorija = $this->input->post('categories[]');
-      /* if (!isset($_POST['holidayRecipe[]']))*/ $spec = $this->input->post('holidayRecipe[]');
+        $spec = $this->input->post('holidayRecipe[]');
 
         $sastojci = $this->input->post('chk_group[]');
 

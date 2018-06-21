@@ -276,8 +276,8 @@ class Jelo extends CI_Model {
      public function unesiAlergiju($idK, $idS) {
 
         $data = array(
-            'idK' => $idK,
-            'idS' => $idS
+            'idS' => $idS,
+            'idK' => $idK 
         );
 
         $this->db->insert('alergije', $data);

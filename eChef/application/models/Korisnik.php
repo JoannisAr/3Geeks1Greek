@@ -57,10 +57,10 @@ class Korisnik extends CI_Model {
         $this->db->from("korisnik");
         $this->db->where("username", $username);
         $query = $this->db->get();
-        ob_flush();
+       /* ob_flush();
         ob_start();
         var_dump($query->result());
-        file_put_contents('dump.txt', ob_get_flush());
+        file_put_contents('dump.txt', ob_get_flush());*/
         return $query->result();
     }
 
@@ -126,5 +126,90 @@ class Korisnik extends CI_Model {
             return $query->result();   
         }
         return NULL;
+    }
+    public function izradiMeni($data)
+    {
+        
+        $this->db->select("*");
+       $this->db->from('meni');
+       $this->db->where('datum','CURDATE()',false);
+       $this->db->where('idK', $this->session->userdata('korisnik')->idK);
+       $query= $this->db->get();
+       $rez=$query->result();
+       
+        
+       
+       if($rez==NULL)
+       {
+           
+           $insertArray = array(
+            'idK' => $this->session->userdata['korisnik']->idK,
+            'datum' => date('Y-m-d H:i:s')
+            );
+
+        $this->db->insert('meni', $insertArray);
+           
+        $this->db->select("idM");
+        $this->db->from("meni");
+        $this->db->where('datum','CURDATE()',false);
+        $this->db->where('idK', $this->session->userdata('korisnik')->idK);
+        $query= $this->db->get();
+        $rez=$query->result();
+        
+           $data['jela'][0] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Breakfast"))[0];
+           
+            $insertArray = array(
+            'idM' => $rez[0]->idM,
+            'idR' => $data['jela'][0]->idR
+            );
+            
+            
+           
+            $this->db->insert('veza_meni_recepti', $insertArray);
+            
+            $data['jela'][1] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Lunch"))[0];
+            
+            
+             $insertArray = array(
+            'idM' => $rez[0]->idM,
+            'idR' => $data['jela'][1]->idR
+            );
+           
+            $this->db->insert('veza_meni_recepti', $insertArray);
+            
+            
+            $data['jela'][2] = $this->Jelo->dohvatiJeloId($this->Jelo->getOmiljenoJelo($this->session->userdata('korisnik')->idK,"Dinner"))[0];
+            
+            
+             $insertArray = array(
+            'idM' => $rez[0]->idM,
+            'idR' => $data['jela'][2]->idR
+            );
+           
+            $this->db->insert('veza_meni_recepti', $insertArray);
+            
+            
+            
+           
+       }
+       else
+       {
+           $this->db->select("idR");
+           $this->db->from("veza_meni_recepti");
+           $this->db->where("idM",$rez[0]->idM);
+           $query= $this->db->get();
+           $results=$query->result();
+          
+           
+           $cnt=0;
+           foreach($results as $res)
+           {
+               $data['jela'][$cnt]=$this->Jelo->dohvatiJeloId($res->idR)[0];
+               $cnt=$cnt+1;
+           }
+           
+           
+       }
+       return $data;
     }
 }

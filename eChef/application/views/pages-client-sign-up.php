@@ -52,6 +52,7 @@
                     <select class="form-control margin-bottom-20" multiple size="5" name="meat[]" required>
                         <option value="Lamb">Lamb</option>
                         <option value="Pork">Pork</option>
+                         <option value="Beef">Beef</option>
                         <option value="Chicken">Chicken</option>
                         <option value="Fish">Fish</option>
                         <option value="Seafood">Seafood</option>
