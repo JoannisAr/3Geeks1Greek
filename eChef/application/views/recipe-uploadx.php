@@ -46,6 +46,7 @@
                     <div>
                         <input type="checkbox" name="chk_group[]" value="Lamb" />Lamb
                         <input type="checkbox" name="chk_group[]" value="Pork" />Pork
+                        <input type="checkbox" name="chk_group[]" value="Beef" />Beef
                         <input type="checkbox" name="chk_group[]" value="Chicken" />Chicken<br />
                         <input type="checkbox" name="chk_group[]" value="Fish" />Fish
                         <input type="checkbox" name="chk_group[]" value="Seafood" />seafood
