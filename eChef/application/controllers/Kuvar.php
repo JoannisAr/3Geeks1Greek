@@ -71,6 +71,7 @@ class Kuvar extends CI_Controller {
         $this->prikazi("rezultatipretrage.php",$data);
     }
     // ovde je stavio WEB/eChef/images/ ako je na www onda ovo menjati.
+	//funkcija koja dodaje novi recept u bazu 
     public function postavitiRecept()
     {
         

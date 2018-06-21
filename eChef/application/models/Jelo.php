@@ -18,7 +18,7 @@ class Jelo extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
-
+//dohvatanje jela po parametru $id
     public function dohvatiJeloId($id) {
         $this->db->select("idR,naziv,sadrzaj,obrok,kategorija,spec_prilika,slika");
         $this->db->from("recepti");

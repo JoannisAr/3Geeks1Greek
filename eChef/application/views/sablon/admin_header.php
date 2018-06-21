@@ -74,7 +74,7 @@
                                                         <a href="<?php echo site_url("$controller/prikaziPoSastojku/Chocolate"); ?>">Chocolate</a>
                                                     </li>
                                                 </ul>
-                                            </li>
+                                    </li>
                                             <li class="parent">
                                                 <span>Special Meals</span>
                                                 <ul>
@@ -115,10 +115,10 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                        </ul>
-                                    </li>                                                           								                              
+                                        
+                                                                                             								                              
                                     <li>
-                                        <a href="contact.html" class="fa-comment ">Logout</a>
+                                        <a href="<?php echo site_url("$controller/logout"); ?>" class="fa-comment">Logout</a>
                                     </li>                              
                                     <li>
                                         <a href="<?php echo site_url("$controller/prikazipretraga"); ?>" ><img src="<?php echo base_url();?>assets/img/search.png" alt="search" width="20" height="20"/></a>

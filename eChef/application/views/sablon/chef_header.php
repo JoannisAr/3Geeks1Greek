@@ -127,7 +127,7 @@
                                         <a href="<?php echo site_url("$controller/prikaziDodavanjeRecepta");?>" class="fa-comment ">Upload Recipie</a>
                                     </li>
 									<li>
-                                        <a href="contact.html" class="fa-comment ">Logout</a>
+                                        <a href="<?php echo site_url("$controller/logout"); ?>" class="fa-comment ">Logout</a>
                                     </li>
                                     <li>
                                         <a href="contact.html" class="fa-comment ">Contact</a>

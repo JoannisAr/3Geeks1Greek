@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <!-- Title -->
@@ -135,7 +136,7 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="contact.html" class="fa-comment ">Logout</a>
+                                        <a href="<?php echo site_url("$controller/logout"); ?>" class="fa-comment ">Logout</a>
                                     </li>
                                     <li>
                                         <a href="contact.html" class="fa-comment ">Contact</a>

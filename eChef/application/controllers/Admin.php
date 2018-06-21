@@ -15,6 +15,9 @@ class Admin  extends CI_Controller{
      public function __construct() {
          parent::__construct();
           $this->load->model('Jelo');
+           $this->load->model("Zahtev");
+        $this->load->model("Korisnik");
+        $this->load->model("Kuvar");
           if (($this->session->userdata('korisnik')) == NULL) {
             redirect("Gost");
           }
@@ -35,8 +38,8 @@ class Admin  extends CI_Controller{
         $this->load->view("sablon/footer.php");
     }
     public function index(){
-       $podaci=[];
-       $this->prikazi("home.php",$podaci);
+      $data['zahtevi'] = $this->Zahtev->dohvatiZahteve();
+        $this->prikazi("requirements.php", $data);
     }
     public function pretraga(){
         //uzme podatak 
@@ -90,8 +93,10 @@ class Admin  extends CI_Controller{
         $this->session->sess_destroy(); //brise se sesija
         redirect("Gost");//kako vise nije ulogovan, treba da se ponasa kao sto je definisano u kontroleru gost
     }
-    public function odobriKuvara(){
-        
-    
-    } 
+   
+    public function sacuvajCV($id){
+        $z= $this->Zahtev->dohvatiZahtev($id);
+        echo $z[0]->cv;
+        header("Content-Disposition: attachment; filename='cv'");
+    }
 }

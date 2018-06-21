@@ -51,6 +51,8 @@ class Registrovani extends CI_Controller {
         $this->prikazi("search.php",$data);
     }
     
+	//funkcija vrsi prelog jela za odgovarajuceg korisnika na osnovu njegovih preferiranih ukusa/ocena
+	//prikazuje view sa odabranim jelom
     public function predloziJelo(){
      
         $jela=$this->Jelo->getOmiljenaJela($this->session->userdata('korisnik')->idK);
@@ -76,6 +78,8 @@ class Registrovani extends CI_Controller {
         
     }    
 
+	//funkcija vrsi odabir 3 jela na osnovu ukusa konkretnog korisnika
+	//i prikazuje ih na posebnom view-u za meni
     public function izradiPlanIshrane(){
        $data=[];
        $data['jela']=[];
@@ -87,6 +91,7 @@ class Registrovani extends CI_Controller {
        $this->prikazi("menu.php",$data);
     }
     
+	//funkcija vrsi prikaz knjige konkrentog korisnika
      public function knjiga(){
         $data = [];
         $data['jela'] = $this->Korisnik->knjiga($this->session->userdata('korisnik')->idK);
@@ -98,6 +103,9 @@ class Registrovani extends CI_Controller {
         $this->Jelo->dodajOcenu($idK,$ocena,$idR);
        redirect(site_url("Registrovani/prikaziJelo/".$idR));
     }
+	
+	//funckija dodaje komentar koji je korisnik uneo za konkretan recept
+	//i nakon unosa vrsi prikaz tog recepta
     public function dodajKomentar()
     { 
         $data = array
@@ -110,12 +118,15 @@ class Registrovani extends CI_Controller {
         $this->Jelo->dodajKomentar($data);
         redirect(site_url("Registrovani/prikaziJelo/".$data['idR']));
     }
-    
+	
+	
+    //funkcija uklanja komentar koji je korisnik uneo
     public function ukloniKomentar($idK,$idR){
         $this->Jelo->ukloniKomentar($idK);
         redirect(site_url("Registrovani/prikaziJelo/".$idR));
     }
-    
+    //funkcija vrsi dodavanje recepta u knjigu omiljenih korisnika koji ju je inicirao
+	//@param id - id recepta koji se dodaje u knjigu
     public function dodajUKnjigu($id){
        $this->Korisnik->dodajUKnjigu($this->session->userdata('korisnik')->idK,$id);
        redirect(site_url("Registrovani/prikaziJelo/".$id));    
@@ -131,7 +142,10 @@ class Registrovani extends CI_Controller {
         $this->load->view($glavniDeo, $data);
         $this->load->view("sablon/footer.php");
     }
-    
+	
+	
+    //funkcija za izlogovanje korisnika i gasenje njegove sesije
+	//nakon toga korisnik se prosledjuje kontroleru Gost
     public function logout(){
         $this->session->unset_userdata("korisnik");// brise se podatak o autoru iz sesije
         $this->session->sess_destroy(); //brise se sesija

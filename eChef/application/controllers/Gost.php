@@ -21,6 +21,8 @@ class Gost extends CI_Controller {
     }
 
     //--pomocna metoda koja sluzi za ucitavanje stranice posto nam se svaka stranica sadrzi iz tri dela
+	//@param $glavniDeo-php stranica koja treba da se prikaze
+	//$data dodatni podaci za ispis na stranici
     private function prikazi($glavniDeo, $data) {
         $data['controller'] = 'Gost';
         $this->load->view("sablon/gost_header.php", $data);
@@ -39,6 +41,7 @@ class Gost extends CI_Controller {
         $this->prikazi("search.php", $data);
     }
 
+	//funkcija dohvata podatke o jelu sa zadatim nazivom i poziva funkciju prikazi() za to jelo
     public function pretraga() {
         //uzme podatak 
         $search = $this->input->get('searchBox');
@@ -51,7 +54,7 @@ class Gost extends CI_Controller {
     }
 
     //--metoda koja ucitava formu za  logovanje
-    //JANIS
+  
     public function login($poruka = NULL) {
         $podaci = [];
         if ($poruka) {
@@ -61,7 +64,8 @@ class Gost extends CI_Controller {
     }
 
     //--metoda koja se poziva klikom na submit forme za logovanje
-    // JANIS
+    // funkcija proverava ispravnost unetih parametara i prilikom ispravnog unosa redirektuje na odgovarajuci kontroler
+	//u slucaju neispravnog unosa preusmerava korisnika nazad na login formu sa dodatnom porukom o neuspehu
     public function ulogujSe() {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -93,8 +97,7 @@ class Gost extends CI_Controller {
         }
     }
 
-    ///--metoda koja ucitava formu za registraciu onu osnovnu /opstu. specialne su u kontroleru za korisnika i kontrolera za chefa.
-    //JELENA
+	//funkcija se poziva prilikom odabira polja za sign up iz glavnog menija
     public function register($poruka = NULL) {
         $podaci = [];
         if ($poruka) {
@@ -103,7 +106,7 @@ class Gost extends CI_Controller {
         $this->prikazi("pages-sign-up.php", $podaci);
     }
 
-    //provera dal su se uneli svi podaci na sign up stranici i dal username vec posotji u bazi
+    //provera dal su se uneli svi podaci na sign up stranici i da li username vec posotji u bazi
     private function proveriReg() {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -151,6 +154,9 @@ class Gost extends CI_Controller {
             $this->prikazi("pages-chef-sign-up.php", $podaci);
     }
 
+	//funkcija se poziva sa forme za sign up za klijenta
+	//proverava ispravnost unetih podataka i formira novog registrovanog korisnika u bazi ukoliko je sve ispravno uneto
+	//vrsi redirect na home page kontrolera Registrovani
     public function registrujSeKorisnik() {
         $data = [];
         if (!isset($_POST['veggie'])) {
@@ -200,6 +206,10 @@ class Gost extends CI_Controller {
         $this->session->set_userdata('korisnik', $korisnik);
         redirect("Registrovani");
     }
+	
+	//funkcija se poziva sa forme za sign up za kuvara
+	//proverava ispravnost unetih podataka i formira zahtev za kuvara u bazi ukoliko je sve ispravno uneto
+	//vrsi redirect na home page kontrolera Gost
 
     public function registrujSeKuvar() {
 
@@ -209,6 +219,8 @@ class Gost extends CI_Controller {
         $podaci = [];
         $this->prikazi("home.php", $podaci);
     }
+	
+	//vrsi prikaz jela sa zadatim $id
 
     public function prikaziJelo($id) {
         $data = [];
@@ -219,7 +231,9 @@ class Gost extends CI_Controller {
         //$data = $this->Jelo->dohvatiPodatkeJelo($id);
         $this->prikazi("recipeGost.php", $data);
     }
-
+	
+	
+	//vrsi prikaz jela koja pripadaju zadato prilici (param: $prilika)
     public function prikaziPrilika($prilika) {
         $data = [];
         $data['jela'] = $this->Jelo->dohvatiJeloPrilika($prilika);
