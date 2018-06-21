@@ -68,30 +68,42 @@ class Kuvar extends CI_Controller {
         $data['jela'] = $this->Jelo->dohvatiJeloKategorija($kategorija);
         $this->prikazi("rezultatipretrage.php",$data);
     }
-    // ovde je stavio WEB/eChef/images/ ako je na www onda ovo menjati.
-	//funkcija koja dodaje novi recept u bazu 
-    public function postavitiRecept()
-    {
-        
+   // ovde je stavio WEB/eChef/images/ ako je na www onda ovo menjati.
+    //funkcija koja dodaje novi recept u bazu 
+    public function postavitiRecept() {
+        $data = [];
+        if (!isset($_POST['chk_group'])) {
+            $data['poruka'] = "Morate uneti sastojke";
+            $this->prikazi("recepie-uploadx.php", $data);
+        }/*
+        if (!isset($_POST['categories'])) {
+            $data['poruka'] = "Morate uneti kategoriju jela";
+            $this->prikazi("recepie-uploadx.php", $data);
+        }
+        if (!isset($_POST['specMeals'])) {
+            $data['poruka'] = "Morate uneti tip obroka";
+            $this->prikazi("recepie-uploadx.php", $data);
+        }*/
+
         $uploaddir = '/WEB/eChef/images/';
         $uploadfile = $uploaddir . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile);
-        
-        $naziv= $this->input->post('recipe_name');
-        $img="/images/" . $_FILES["image"]["name"];
-        $sadrzaj= $this->input->post('instructions');
-        $obrok= $this->input->post('specMeals[]');
-        $kategorija= $this->input->post('categories[]');
-        $spec=$this->input->post('holidayRecipe[]');
-        
-        $sastojci= $this->input->post('chk_group[]');
-        
-        $this->Jelo->postaviJelo($naziv,$img,$sadrzaj,$obrok,$kategorija,$spec,$sastojci);
-        
-        
+
+        $naziv = $this->input->post('recipe_name');
+        $img = "/images/" . $_FILES["image"]["name"];
+        $sadrzaj = $this->input->post('instructions');
+        $obrok = $this->input->post('specMeals[]');
+        $kategorija = $this->input->post('categories[]');
+      /* if (!isset($_POST['holidayRecipe[]']))*/ $spec = $this->input->post('holidayRecipe[]');
+
+        $sastojci = $this->input->post('chk_group[]');
+
+        $this->Jelo->postaviJelo($naziv, $img, $sadrzaj, $obrok, $kategorija, $spec, $sastojci);
+
+
         redirect(site_url("Kuvar/index"));
     }
-    
+	
    public function knjiga(){
         $data = [];
         $data['jela'] = $this->Korisnik->knjiga($this->session->userdata('korisnik')->idK);

@@ -116,12 +116,14 @@ class Jelo extends CI_Model {
         $this->db->insert('omiljeni', $data);
     }
 
+    //poziva se iz funkcije predlozi jelo
     public function getOmiljenaJela($idK) {
 
         $this->db->select("sr.idR");
         $this->db->from("veza_sastojci_recepti sr, omiljeni o");
         $this->db->where("o.idK", $idK);
         $this->db->where("o.idS = sr.idS");
+        
         $tmp = $this->db->get();
         $query1 = $tmp->result();
 
@@ -150,6 +152,8 @@ class Jelo extends CI_Model {
         return $query;
     }
 
+    //koristi ga funkcija getOmiljenoJelo
+    //vraca bilo koje jelo tog tipa obroka
     public function getJeloPoObroku($obrok) {
 
         $this->db->select("idR");
@@ -163,9 +167,10 @@ class Jelo extends CI_Model {
 
         return $jela[$ind]->idR;
     }
-
+    //poziva se iz funkcije izradaPlana Menija
     public function getOmiljenoJelo($idK, $obrok) {
 
+        //gleda da li ima jelo koje spada u omiljene i da je taj tip obroka, ako nema vraca bilo koje jelo tog tipa obroka
         $this->db->select("sr.idR");
         $this->db->from("veza_sastojci_recepti sr, omiljeni o, recepti r");
         $this->db->where("o.idK", $idK);
@@ -267,5 +272,40 @@ class Jelo extends CI_Model {
             
             
     }  
+    
+     public function unesiAlergiju($idK, $idS) {
+
+        $data = array(
+            'idK' => $idK,
+            'idS' => $idS
+        );
+
+        $this->db->insert('alergije', $data);
+    }
+    
+    public function getAlergije($idK){
+        $this->db->select("idS");
+        $this->db->from("alergije");
+        $this->db->where("idK", $idK);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) 
+            return $query->result();
+        else
+            return false;
+    }
+    //proverava da li je korisnik alergican na taj recept
+    //false-jeste; true=nije;
+    public function proveriRecept($idR,$idK){
+        $this->db->select("a.idS");
+        $this->db->from("alergije a, veza_sastojci_recepti vsr");
+        $this->db->where("a.idK", $idK);
+        $this->db->where("a.idS = vsr.idS");
+        $this->db->where("vsr.idR", $idR);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) 
+            return false;
+        else
+            return true;
+    }
 
 }

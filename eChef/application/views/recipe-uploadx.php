@@ -4,6 +4,9 @@
             <!-- Register Box -->
             <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
                 <form class="upload recipe" action="<?php echo site_url('Kuvar/postavitiRecept');?> " method='post'  enctype="multipart/form-data">
+                    <?php if(isset($poruka))
+					echo "<font color='red'>$poruka</font><br>";
+                    ?>
                     <div class="neka-a">
                         <h2><b>Recipe upload</b></h2>
                     </div>
@@ -11,16 +14,16 @@
                     <div class="col-md-6">
                         <label><b>Name of recipe :</b></label>
                         <div class="input-group margin-bottom-20">
-                            <input class="form-control" type="text" name="recipe_name" >
+                            <input class="form-control" type="text" name="recipe_name" required>
                         </div>
                     </div>
                     <div class="col-md-6">			
                         <label><b>Place to upload a photo:</b></label>
-                        <input class="form-control margin-bottom-20" type="file" name="image" accept="image/*">
+                        <input class="form-control margin-bottom-20" type="file" name="image" accept="image/*" required>
                     </div>	
                     <div>                      
                         <label class="pull-left"><b>Instructions:</b></label>
-                        <textarea rows="4" cols="50" name="instructions" style="width:476px;height:290px;resize:none">Enter text here...</textarea>
+                        <textarea rows="4" cols="50" name="instructions" style="width:476px;height:290px;resize:none" required ></textarea>
                     </div>
                     <br>
                    <label>Fruit and vegetables</label>
@@ -46,7 +49,7 @@
                     <div>
                         <input type="checkbox" name="chk_group[]" value="Lamb" />Lamb
                         <input type="checkbox" name="chk_group[]" value="Pork" />Pork
-                        <input type="checkbox" name="chk_group[]" value="Beef" />Beef
+						 <input type="checkbox" name="chk_group[]" value="Beef" />Beef
                         <input type="checkbox" name="chk_group[]" value="Chicken" />Chicken<br />
                         <input type="checkbox" name="chk_group[]" value="Fish" />Fish
                         <input type="checkbox" name="chk_group[]" value="Seafood" />seafood
@@ -85,7 +88,7 @@
                         <option value="Dinner">Dinner</option>
                     </select>	
                     <label><b>Holiday recipe :</b></label>
-                    <select class="form-control margin-bottom-20" required size="5" name="holidayRecipe[]" >
+                    <select class="form-control margin-bottom-20"  size="5" name="holidayRecipe[]" >
                         <option value="Christmas">Christmas</option>
                         <option value="Easter">Easter</option>
                         <option value="Dinner Parties">Dinner Parties</option>

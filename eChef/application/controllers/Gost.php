@@ -158,7 +158,7 @@ class Gost extends CI_Controller {
 	//proverava ispravnost unetih podataka i formira novog registrovanog korisnika u bazi ukoliko je sve ispravno uneto
 	//vrsi redirect na home page kontrolera Registrovani
     public function registrujSeKorisnik() {
-        $data = [];
+         $data = [];
         if (!isset($_POST['veggie'])) {
             $data['poruka'] = "Morate uneti preferirano voce/povrce";
             $this->prikazi("pages-client-sign-up.php", $data);
@@ -197,7 +197,15 @@ class Gost extends CI_Controller {
             $idS = $this->Jelo->getIdSastojka($ukusi)[0]->idS;
             $this->Jelo->unesiOmiljeniSastojak($idK, $idS);
         }
-        // *****fale alergije dodacu kad napravimo tabelu u bazi*****
+        
+        //ako su unete alergije
+        if (!isset($_POST['alergije'])) {
+            foreach ($this->input->post('alergije') as $al) {
+                $idS = $this->Jelo->getIdSastojka($al)[0]->idS;
+                $this->Jelo->unesiAlergiju($idK, $idS);
+            }
+        }
+        
         $pol = $_POST['gender'];
         $this->Korisnik->unesiRegistrovanog($idK, $pol);
 

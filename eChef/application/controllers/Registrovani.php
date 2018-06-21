@@ -48,15 +48,38 @@ class Registrovani extends CI_Controller {
         $this->prikazi("search.php",$data);
     }
     
-	//funkcija vrsi prelog jela za odgovarajuceg korisnika na osnovu njegovih preferiranih ukusa/ocena
-	//prikazuje view sa odabranim jelom
-    public function predloziJelo(){
-     
-        $jela=$this->Jelo->getOmiljenaJela($this->session->userdata('korisnik')->idK);
-        $size=count($jela);
-        $ind=mt_rand(0,$size-1);
-        $this->prikaziJelo($jela[$ind]->idR);
-        
+//funkcija vrsi prelog jela za odgovarajuceg korisnika na osnovu njegovih preferiranih ukusa/ocena
+    //prikazuje view sa odabranim jelom
+    public function predloziJelo() {
+        $flag = 0;
+        while ($flag == 0) {
+            $idK=$this->session->userdata('korisnik')->idK;
+            $jela = $this->Jelo->getOmiljenaJela($idK);
+            $size = count($jela);
+            $ind = mt_rand(0, $size - 1);
+
+            /* ob_flush();
+              ob_start();
+              var_dump($size);
+              file_put_contents('dump.txt', ob_get_flush());
+
+              ob_flush();
+              ob_start();
+              var_dump($ind);
+              file_put_contents('dump.txt', ob_get_flush());
+
+              ob_flush();
+              ob_start();
+              var_dump($jela[$ind]->idR);
+              file_put_contents('dump.txt', ob_get_flush()); */
+            $idR = $jela[$ind]->idR;
+            if($this->Jelo->getAlergije($idK)){
+                if($this->Jelo->proveriRecept($idR,$idK))
+                   $flag=1;
+            }
+            else $flag=1;
+        }
+        $this->prikaziJelo($idR);
     }    
 
 	//funkcija vrsi odabir 3 jela na osnovu ukusa konkretnog korisnika
